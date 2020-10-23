@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-23 16:09:05
+ * @modify date 2020-10-23 21:35:07
  * @desc [Footer component]
  */
 
@@ -15,7 +15,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <section classNameName="bg-light mt-0">
+    <section className="bg-light mt-0">
       <footer className="ftco-footer ftco-bg-dar ftco-section">
         <div className="container">
           <div className="row mb-5">

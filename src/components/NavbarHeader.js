@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2020-10-23 16:27:19
+ * @modify date 2020-10-23 18:57:45
  * @desc [NavBar Component]
  */
 
@@ -15,11 +15,14 @@ const Styles = styled.div`
   .navbar {
     background-color: #fff;
     position:sticky;
+    top:0;
   }
   .navbar-brand,
   .navbar-nav .nav-link {
     font-size:1.3rem;
     color: #000;
+    position:sticky;
+    top:0;
 
     &:hover {
       color: red;
@@ -29,7 +32,7 @@ const Styles = styled.div`
 
 const NavbarHeader = () => (
   <Styles>
-    <Navbar expand="lg" >
+    <Navbar expand="lg" className="sticky-top">
       <Navbar.Brand href="/">D2Luxury</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar" />
 

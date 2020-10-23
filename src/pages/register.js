@@ -75,7 +75,7 @@ export default class Register extends Component {
               />
               </Form.Group>
 
-              <Button type='submit' variant="black" className="btn-block">Login</Button>
+              <Button type='submit' variant="black" className="btn-block">Register</Button>
             </Form>
 
           </Card.Body>
