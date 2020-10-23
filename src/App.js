@@ -1,25 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-10-23 12:31:08
+ * @modify date 2020-10-23 13:58:33
+ * @desc [App Component - Main Component]
+ */
+import React, { Fragment } from "react";
+import NavbarHeader  from "./components/NavbarHeader";
+/**
+ * import all styles
+ */
+import "./css/style.css";
+import 'bootstrap/dist/css/bootstrap.css';
+import "./css/flaticon.css"
+import "./css/ionicons.min.css";
+
+
+/**
+ * impirt required component
+ * Home , Login
+ */
+
+import {Home} from './pages/home';
+import  Login  from '../src/pages/login'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+     
+      
+      <Router>
+      <NavbarHeader />
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            
+        </Switch>
+      </Router>
+    </Fragment>
   );
 }
 
