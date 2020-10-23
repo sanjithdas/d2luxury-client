@@ -2,41 +2,46 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-23 14:42:05
+ * @modify date 2020-10-23 16:09:05
  * @desc [Footer component]
  */
 
 import React from "react";
 
+
+
+ 
+ 
+
 const Footer = () => {
   return (
     <section classNameName="bg-light mt-0">
-      <footer className="ftco-footer ftco-bg-dark ftco-section">
+      <footer className="ftco-footer ftco-bg-dar ftco-section">
         <div className="container">
           <div className="row mb-5">
             <div className="col-md">
               <div className="ftco-footer-widget mb-4">
-                <h2 className="ftco-heading-2">Roxandrea</h2>
+                <h2 className="ftco-heading-2">D2Luxury</h2>
                 <p>
                   Far far away, behind the word mountains, far from the
                   countries Vokalia and Consonantia, there live the blind texts.
                 </p>
                 <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                  <li className="ftco-animate">
+                   <li className="">
                     <a href="#">
                       <span className="icon-twitter"></span>
                     </a>
                   </li>
-                  <li className="ftco-animate">
+                  <li className="">
                     <a href="#">
                       <span className="icon-facebook"></span>
                     </a>
                   </li>
-                  <li className="ftco-animate">
+                  <li className="">
                     <a href="#">
                       <span className="icon-instagram"></span>
                     </a>
-                  </li>
+                  </li> 
                 </ul>
               </div>
             </div>
@@ -102,8 +107,7 @@ const Footer = () => {
                     <li>
                       <span className="icon icon-map-marker"></span>
                       <span className="text">
-                        203 Fake St. Mountain View, San Francisco, California,
-                        USA
+                        203 My Street, Doveton, Australia
                       </span>
                     </li>
                     <li>
@@ -123,11 +127,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <p></p>
-            </div>
-          </div>
+         
         </div>
       </footer>
     </section>

@@ -1,3 +1,10 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-10-23 16:36:03
+ * @modify date 2020-10-23 16:38:30
+ * @desc [Login page]
+ */
 import React, { Component , useState} from 'react'
 
 import
@@ -9,6 +16,11 @@ import { useHistory } from 'react-router-dom'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 
+/**
+ * imort footer
+ * 
+ */
+import Footer from "../components/FooterC";
 export default class Login extends Component {
   render() {
 
@@ -27,7 +39,8 @@ export default class Login extends Component {
     }
 
     return (
-      <Row className="mt-5">
+      <div>
+      <Row className="mt-5 mb-5">
      <Col md={6} className = 'mx-auto'>
        <Card>
          <Card.Body>
@@ -62,7 +75,10 @@ export default class Login extends Component {
          </Card.Body>
        </Card>
      </Col>
+      
    </Row>
+   <Footer/>
+   </div>
     )
   }
 }

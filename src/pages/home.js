@@ -2,13 +2,14 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 16:35:39
- * @modify date 2020-10-23 14:12:22
+ * @modify date 2020-10-23 15:15:22
  * @desc [Home page]
  */
 import React from "react";
 import { HeaderImage } from "../components/HeaderImage";
 import Rooms from "../pages/rooms";
 import Blogs from "../pages/blogs";
+import Footer from "../components/FooterC"
 
 export const Home = () => {
   return (
@@ -273,6 +274,9 @@ export const Home = () => {
       </section>
       <Rooms />
       <Blogs />
+      <Footer />
     </div>
   );
 };
+
+export default Home;
