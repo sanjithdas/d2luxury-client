@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-24 00:46:08
+ * @modify date 2020-10-24 22:00:03
  * @desc [Room component - listing all the rooms]
  */
 
@@ -20,7 +20,7 @@ import { getRooms } from "../../src/actions/Actions";
  */
 import  HeaderImage  from "../components/HeaderImage";
 import Room from "../pages/room";
-import Footer from "../components/FooterC"
+
 
 
 class Rooms extends Component {
@@ -63,19 +63,9 @@ class Rooms extends Component {
           ))
         }
       </Fragment>
-
-            
-          </div>
-
-          
-
-          
-        </div>
-
-        
-
-        
-      </section>
+       </div>
+      </div>
+    </section>
       
     );
   } // End of Render

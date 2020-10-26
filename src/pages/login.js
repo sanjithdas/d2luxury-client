@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-23 16:38:30
+ * @modify date 2020-10-24 22:00:40
  * @desc [Login page]
  */
 import React, { Component , useState} from 'react'
@@ -77,7 +77,7 @@ export default class Login extends Component {
      </Col>
       
    </Row>
-   <Footer/>
+  
    </div>
     )
   }

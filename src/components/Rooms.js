@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-23 22:10:37
+ * @modify date 2020-10-24 22:03:04
  * @desc [Room component - listing all the rooms]
  */
 
@@ -27,8 +27,7 @@ const Rooms = () => {
     <section className="bg-light mt-0">
       <HeaderImage />
       <RoomsPage />
-      <Footer />
-    </section>
+      </section>
   );
 };
 

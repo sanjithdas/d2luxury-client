@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-23 19:15:35
+ * @modify date 2020-10-24 22:03:23
  * @desc [Create New Room - admin only]
  */
 import React, { Component , useState} from 'react'
@@ -103,7 +103,7 @@ export default class Create extends Component {
      </Col>
       
    </Row>
-   <Footer/>
+   
    </div>
     )
   }

@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-26 19:37:51
+ * @modify date 2020-10-26 19:08:39
  * @desc [Login Component]
  */
 import React, { Component, useState } from "react";
@@ -17,13 +17,12 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-class Register extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
-      confirmPassword: "",
       loading: false,
       errors: {},
     };
@@ -37,12 +36,11 @@ class Register extends Component {
     const userData = {
       email: this.state.email,
       password: this.state.password,
-      confirmPassword: this.state.confirmPassword,
     };
     console.log(userData);
     axios
       .post(
-        "http://localhost:5000/d2luxuryredux/us-central1/api/signup",
+        "http://localhost:5000/d2luxuryredux/us-central1/api/login",
         userData
       )
       .then((res) => {
@@ -80,7 +78,7 @@ class Register extends Component {
               <Card.Body>
                 <h1 className="text-center pb-4, pt-3">
                   <FontAwesomeIcon icon="lock" className="text-primary" />{" "}
-                  <span className="text-black">Register</span>
+                  <span className="text-black">Login</span>
                 </h1>
 
                 <Form onSubmit={this.onHandleSubmit}>
@@ -109,41 +107,19 @@ class Register extends Component {
 
                     <span style={{ color: "red" }}>{errors.password} </span>
                   </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter your password"
-                      name="confirmPassword"
-                      value={this.state.confirmPassword}
-                      onChange={this.onHandleChange}
-                    />
-
-                    <span style={{ color: "red" }}>
-                      {errors.confirmPassword}{" "}
-                    </span>
-                  </Form.Group>
-
                   {errors.general && (
                     <span style={{ color: "red" }}>{errors.general} </span>
                   )}
 
-                  {errors.error === "auth/weak-password" && (
-                    <span style={{ color: "red" }}>
-                      Please use a strong password{" "}
-                    </span>
-                  )}
-
                   <Button type="submit" variant="black" className="btn-block">
-                    Signup
+                    Login
                     {loading && <div class="spinner-grow text-warning"></div>}
                   </Button>
                   <br></br>
                   <small>
                     {" "}
-                    Already have an account ? login{" "}
-                    <Link to="/login"> here </Link>
+                    Don't have an account ? sign up{" "}
+                    <Link to="/signup"> here </Link>
                   </small>
                 </Form>
               </Card.Body>
@@ -155,4 +131,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Login;

@@ -1,4 +1,4 @@
-import {createStore , applyMiddleware} from 'redux';
+import {createStore , applyMiddleware, compose, combineReducers} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension' ;
 import thunk from 'redux-thunk'; //async actions
 import rootReducer from './reducers/rootReducer.js'

@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-10-23 20:52:14
+ * @modify date 2020-10-24 16:49:52
  * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
  */
 import {GET_ROOMS,
@@ -30,14 +30,16 @@ export const getRooms = () => async dispatch => {
  * @param {*} id 
  */
 
-export const getRoom = id =>async dispatch =>{
-
-const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+export const getRoom = roomno =>async dispatch =>{
+//console.log(roomno);
+  const res = await axios.get(`http://localhost:5000/d2luxuryredux/us-central1/api/room/${roomno}`);
   dispatch({
   type: GET_ROOM,
   payload: res.data
   })
+  //console.log(res.data);
 }
+
 /**
  * delete the room according to the id provided.
  * @param {} id 
