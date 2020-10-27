@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-10-26 21:04:43
+ * @modify date 2020-10-27 21:06:00
  * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
  */
 import {GET_ROOMS,
@@ -12,7 +12,7 @@ import {GET_ROOMS,
   ADD_ROOM,
   UPDATE_ROOM
   
-} from './type';
+} from '../actions/types';
 import axios from 'axios';
 
 /**

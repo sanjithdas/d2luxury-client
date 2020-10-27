@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-26 21:15:24
- * @modify date 2020-10-26 21:17:30
+ * @modify date 2020-10-27 21:02:49
  * @desc [Reducer Types]
  */
 
@@ -24,4 +24,6 @@ export const EDIT_ROOM = "EDIT_ROOM";
 export const SET_ERRORS = "SET_ERRORS"
 export const LOADING_UI = "LOADING_UI"
 export const CLEAR_ERRORS = "CLEAR_ERRORS"
+export const LOADING_DATA = 'LOADING_DATA';
+export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 

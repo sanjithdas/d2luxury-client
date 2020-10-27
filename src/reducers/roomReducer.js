@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 20:28:55
- * @modify date 2020-10-23 20:29:21
+ * @modify date 2020-10-27 21:05:22
  * @desc [Reducer - update the state]
  */
 
@@ -13,7 +13,7 @@ import {
   DEL_ERROR,
   ADD_ROOM,
   UPDATE_ROOM
-} from '../actions/type';
+} from '../actions/types';
 
 const initialState = {
   rooms: [],

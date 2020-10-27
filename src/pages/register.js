@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-26 19:37:51
+ * @modify date 2020-10-27 23:12:51
  * @desc [Login Component]
  */
 import React, { Component, useState } from "react";
@@ -12,10 +12,14 @@ import { Row, Col, Form, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { compose } from "redux";
+
+//redux stuff
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { Link } from "react-router-dom";
+
+import {signupUser } from '../actions/userActions';
+
 
 class Register extends Component {
   constructor() {
@@ -24,7 +28,7 @@ class Register extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      loading: false,
+     
       errors: {},
     };
   }
@@ -34,34 +38,21 @@ class Register extends Component {
     this.setState({
       loading: true,
     });
-    const userData = {
+    const newUserData = {
       email: this.state.email,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     };
-    console.log(userData);
-    axios
-      .post(
-        "http://localhost:5000/d2luxuryredux/us-central1/api/signup",
-        userData
-      )
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        this.setState({
-          loading: false,
-        });
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        this.setState({
-          errors: err.response.data,
-          loading: false,
-        });
-      });
+    this.props.signupUser(newUserData , this.props.history)
     // console.log("Submitted Auth");
   };
+// setting errors
+  componentWillReceiveProps(nextProps){
+    if (nextProps.UI.errors)
+     this.setState({ errors: nextProps.UI.errors})
+  }
 
+  
   onHandleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -70,7 +61,9 @@ class Register extends Component {
   };
 
   render() {
-    const { errors, loading } = this.state;
+    
+    const { UI: {loading} } = this.props
+    const { errors } = this.state;
 
     return (
       <div>
@@ -155,4 +148,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired
+  
+}
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  UI: state.UI
+})
+
+
+
+export default connect(mapStateToProps, {signupUser})(Register);

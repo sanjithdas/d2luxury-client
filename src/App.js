@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:31:08
- * @modify date 2020-10-26 20:53:00
+ * @modify date 2020-10-27 23:22:21
  * @desc [App Component - Main Component]
  */
 /**
@@ -21,7 +21,7 @@ import "./css/icomoon.css";
 import "./css/aos.css";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import axios from 'axios'
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -37,6 +37,9 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { SET_AUTHENTICATED } from './actions/types';
+import {logoutUser, getUserData} from './actions/userActions';
+
 /**
  * impirt required component
  * Home , Login , Rooms , About , Create room (admin)
@@ -44,7 +47,6 @@ import {
 
 import Home from "./pages/home";
 import Login from "../src/components/Login";
-//import  Login  from '../src/pages/login';
 import Rooms from "../src/components/Rooms";
 import About from "../src/pages/about";
 import Contact from "../src/pages/contact";
@@ -60,15 +62,21 @@ const mapStyles = {
   width: "100%",
   height: "100%",
 };
+
 let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logoutUser());
     window.location.href = "/login";
-    authenticated = false;
+    // this.props.push("/login");
+    //authenticated = false;
   } else {
-    authenticated = true;
+    store.dispatch({ type : 'SET_AUTHENTICATED' });
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(getUserData());
+    //authenticated = true;
   }
 }
 function App() {
@@ -83,7 +91,7 @@ function App() {
   );
   return (
     <Provider store={store}>
-      {console.log(store)}
+     
       <Router>
         <NavbarHeader />
         <Switch>
@@ -92,7 +100,7 @@ function App() {
             exact
             path="/login"
             component={Login}
-            authenticated={authenticated}
+           
           />
           <Route exact path="/rooms" component={Rooms} />
           <Route exact path="/about" component={About} />
@@ -101,7 +109,7 @@ function App() {
             exact
             path="/register"
             component={Register}
-            authenticated={authenticated}
+            
           />
           <Route path="/admin/room/create" component={Create} />
           <Route path="/room/details/:roomno" component={room_details} />
