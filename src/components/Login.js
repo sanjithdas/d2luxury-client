@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-26 19:08:39
+ * @modify date 2020-10-26 21:55:47
  * @desc [Login Component]
  */
 import React, { Component, useState } from "react";
@@ -10,9 +10,10 @@ import React, { Component, useState } from "react";
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useHistory } from "react-router-dom";
+ 
 import { compose } from "redux";
 import { connect } from "react-redux";
+import {loginUser} from '../actions/userActions';
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -23,41 +24,23 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      loading: false,
+     
       errors: {},
     };
   }
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      loading: true,
-    });
+    // this.setState({
+    //   loading: true,
+    // });
     const userData = {
       email: this.state.email,
       password: this.state.password,
     };
-    console.log(userData);
-    axios
-      .post(
-        "http://localhost:5000/d2luxuryredux/us-central1/api/login",
-        userData
-      )
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        this.setState({
-          loading: false,
-        });
-        this.props.history.push("/");
-      })
-      .catch((err) => {
-        this.setState({
-          errors: err.response.data,
-          loading: false,
-        });
-      });
-    // console.log("Submitted Auth");
+
+    this.props.loginUser(userData, this.props.history);
+    
   };
 
   onHandleChange = (e) => {
@@ -68,7 +51,7 @@ class Login extends Component {
   };
 
   render() {
-    const { errors, loading } = this.state;
+    const { errors, UI: { loading } } = this.state;
 
     return (
       <div>
@@ -131,4 +114,20 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.PropTypes = {
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  UI: state.UI
+});
+
+const mapActionsToProps = {
+  loginUser
+  
+}
+
+export default connect(mapStateToProps , mapActionsToProps)(Login);

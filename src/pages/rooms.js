@@ -13,7 +13,7 @@ import PropTypes from "prop-types"; //impt
 import { compose } from "redux";
 
 //import Room from "./Room";
-import { getRooms } from "../../src/actions/Actions";
+import { getRooms } from "../actions/roomActions";
 
 /**
  * custom component insert

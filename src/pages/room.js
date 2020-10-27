@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
-import { deleteRoom } from '../../src/actions/Actions';
+import { deleteRoom } from '../actions/roomActions';
 import imgroom from '../images/room-1.jpg'
 
 class Room extends Component {

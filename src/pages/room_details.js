@@ -9,7 +9,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getRoom } from "../../src/actions/Actions";
+import { getRoom } from "../actions/roomActions";
 import  HeaderImage  from "../components/HeaderImage";
 import imgroom from '../images/room-3.jpg'
 import imgroom_ from '../images/room-4.jpg'
