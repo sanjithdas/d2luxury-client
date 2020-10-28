@@ -28,13 +28,13 @@ var schema = Joi.object().keys({
 class Contact extends Component {
   constructor(props) {
     super(props);
-    //  this.state={
-    //   name:'',
-    //   email:'',
-    //   subject:'',
-    //   message:'',
-    //   allerrors:'',
-    //  }
+      this.state={
+       name:'',
+       email:'',
+       subject:'',
+       message:'',
+       errors:'',
+      }
   }
 
   render() {
@@ -46,6 +46,7 @@ class Contact extends Component {
     } = this.props;
 
     const handleSubmit = () => {
+      alert(name);
       if (Object.keys(this.props.user).length <= 0) {
         //this.props.errors='Data Missing';
         errors='All the fields are required';
@@ -140,13 +141,13 @@ class Contact extends Component {
                   <div className="form-group">
                     <input
                       type="text"
-                      value={name}
+                      value={ name }
                       className="form-control"
                       placeholder="Your Name"
                       onChange={changeHandler("name")}
                       onBlur={validateHandler("name")}
                     />
-                    <span style={{ color: "red" }}> {err} </span>
+                    <span style={{ color: "red" }}> {errors.name} </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -211,12 +212,12 @@ class Contact extends Component {
   }
 }
 
-Contact.defaultProps = {
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-};
+// Contact.defaultProps = {
+//   name: "",
+//   email: "",
+//   subject: "",
+//   message: "",
+// };
 
 var validationOptions = {
   joiSchema: schema,

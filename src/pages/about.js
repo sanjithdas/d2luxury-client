@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-24 22:02:50
+ * @modify date 2020-10-28 09:27:45
  * @desc [About page]
  */
 
@@ -25,7 +25,7 @@ const About = () => {
                 <div className="col-md-9  text-center d-flex align-items-end justify-content-center">
                     <div className="text">
                          
-                        <h1 className="mb-4 bread">About us</h1>
+                        <h1 className="mb-4 bread"></h1>
                     </div>
                 </div>
             </div>

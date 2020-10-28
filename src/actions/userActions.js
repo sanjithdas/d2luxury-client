@@ -1,5 +1,11 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED } from '../actions/types'
-import axios from 'axios';
+import {
+  SET_USER,
+  SET_ERRORS,
+  CLEAR_ERRORS,
+  LOADING_UI,
+  SET_UNAUTHENTICATED,
+} from "../actions/types";
+import axios from "axios";
 
 // user login
 export const loginUser = (userData, history) => (dispatch) => {
@@ -9,16 +15,16 @@ export const loginUser = (userData, history) => (dispatch) => {
     .post("http://localhost:5000/d2luxuryredux/us-central1/api/login", userData)
     .then((res) => {
       console.log(res.data);
-      setAuthorizationHeader(res.data.token)
+      setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push("/admin/room/create/");
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: SET_ERRORS,
-       // errors:err.response.data,
+        // errors:err.response.data,
         payload: err.response.data,
       });
     });
@@ -30,18 +36,21 @@ export const signupUser = (newUserData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   console.log(newUserData);
   axios
-    .post("http://localhost:5000/d2luxuryredux/us-central1/api/signup", newUserData)
+    .post(
+      "http://localhost:5000/d2luxuryredux/us-central1/api/signup",
+      newUserData
+    )
     .then((res) => {
-      setAuthorizationHeader(res.data.token)
+      setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push("/admin/room/create");
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: SET_ERRORS,
-       // errors:err.response.data,
+        // errors:err.response.data,
         payload: err.response.data,
       });
     });
@@ -49,10 +58,10 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 };
 
 // logout user
-export const logoutUser = () => (dispatch) =>{
-  localStorage.removeItem('FBIdToken');
-  delete axios.defaults.headers.common['Authorization']
-  dispatch({type: SET_UNAUTHENTICATED});
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem("FBIdToken");
+  delete axios.defaults.headers.common["Authorization"];
+  dispatch({ type: SET_UNAUTHENTICATED });
 
   // console.log(userData);
   //   axios
@@ -74,7 +83,7 @@ export const logoutUser = () => (dispatch) =>{
   //         loading: false,
   //       });
   //     });
-}
+};
 
 export const getUserData = () => (dispatch) => {
   axios
@@ -92,4 +101,4 @@ const setAuthorizationHeader = (token) => {
   const FBIdToken = `Bearer ${token}`;
   localStorage.setItem("FBIdToken", FBIdToken);
   axios.defaults.headers.common["Authorization"] = FBIdToken;
-}
+};
