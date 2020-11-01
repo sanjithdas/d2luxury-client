@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-24 14:07:20
- * @modify date 2020-10-24 23:28:19
+ * @modify date 2020-11-01 23:36:01
  * @desc [Individual Room Details]
  */
 import React, { Component } from "react";
@@ -10,12 +10,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { getRoom } from "../actions/roomActions";
+import { loginUser } from "../actions/userActions"
 import  HeaderImage  from "../components/HeaderImage";
 import imgroom from '../images/room-3.jpg'
 import imgroom_ from '../images/room-4.jpg'
 
 import Carousel from 'react-bootstrap/Carousel'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class room_details extends Component {
   state = {
@@ -25,6 +26,7 @@ class room_details extends Component {
     roomType: "",
     roomRate: "",
     imageUrl: "",
+    occupants:"",
     errors: {},
   };
 
@@ -39,6 +41,8 @@ class room_details extends Component {
       roomType,
       roomRate,
       imageUrl,
+      occupants,
+      bedType
     } = nextProps.room[0];
     
     this.setState({
@@ -49,7 +53,8 @@ class room_details extends Component {
       roomType,
       roomRate,
       imageUrl,
-       
+      occupants,
+      bedType
     });
   }
 
@@ -57,7 +62,7 @@ class room_details extends Component {
     const { roomno } = this.props.match.params;
     console.log(this.props.match.params);
     this.props.getRoom(roomno);
-   // console.log(this.state)
+    
   }
 
   render() {
@@ -67,12 +72,16 @@ class room_details extends Component {
       userId,
       imageUrl,
       roomType,
+      bedType,
+      occupants,
       roomRate,
     } = this.state;
+    const {authenticated} = this.props.authenticated;
     return (
+    
       <div>
         <HeaderImage />
-
+        
   <section className="ftco-section">
    <div className="container">
         <div className="row">
@@ -129,13 +138,13 @@ class room_details extends Component {
                        <p>{description}</p>
                        <div className="d-md-flex mt-5 mb-5">
                             <ul className="list">
-                             <li><span>Max Occupants:</span>0</li>
+                             <li><span>Max Occupants: {occupants}</span></li>
                              <li><span className="alert-danger">Size:</span> 45 m2</li>
                             </ul>
                              <ul className="list ml-md-5">
                               <li><span className="alert-danger">View:</span> Sea View</li>
                               <span>Bed Types:</span>
-                              <span><i><b>1 King</b></i></span>
+                              <span><i><b>{bedType}</b></i></span>
                               </ul>
                        </div>
                       <p>{description}.</p>
@@ -249,11 +258,17 @@ class room_details extends Component {
 }
 
 room_details.propTypes = {
-  room: PropTypes.object.isRequired,
+ // room: PropTypes.object.isRequired,
   getRoom: PropTypes.func.isRequired,
   // updateContact: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
   room: state.room.room,
+  authenticated: state.user.authenticated
 });
+
+const mapActionsToProps ={
+  getRoom,
+  loginUser
+}
 export default connect(mapStateToProps, {getRoom})(room_details);

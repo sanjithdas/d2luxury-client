@@ -2,13 +2,15 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2020-10-23 18:57:45
+ * @modify date 2020-10-30 21:05:43
  * @desc [NavBar Component]
  */
 
-import React from "react";
+import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 
 
 const Styles = styled.div`
@@ -30,7 +32,15 @@ const Styles = styled.div`
   }
 `;
 
-const NavbarHeader = () => (
+class  NavbarHeader extends Component{
+  constructor(){
+    super();
+  }
+  
+  render(){
+    const authenticated = this.props.authenticated 
+    
+    return(
   <Styles>
     <Navbar expand="lg" className="sticky-top">
       <Navbar.Brand href="/">D2Luxury</Navbar.Brand>
@@ -39,7 +49,7 @@ const NavbarHeader = () => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item>
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/">Home  </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/rooms">Rooms</Nav.Link>
@@ -54,12 +64,23 @@ const NavbarHeader = () => (
             <Nav.Link href="/register">Register</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/login">Login</Nav.Link>
+
+            { authenticated ? (
+              <Nav.Link href="/logout">Logout</Nav.Link>
+            ) : (
+              <Nav.Link href="/login">Login</Nav.Link>
+            )}
+            
+            {/* <Nav.Link href="/login">{ authenticated  ? 'Logout' : 'Login'} </Nav.Link> */}
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   </Styles>
-);
+    )};
+}
 
-export default NavbarHeader;
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated
+})
+export default connect(mapStateToProps)(NavbarHeader);

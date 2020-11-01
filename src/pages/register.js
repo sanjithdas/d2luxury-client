@@ -2,16 +2,14 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-10-27 23:12:51
+ * @modify date 2020-11-01 23:27:48
  * @desc [Login Component]
  */
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useHistory } from "react-router-dom";
-import { compose } from "redux";
 
 //redux stuff
 import { connect } from "react-redux";
@@ -81,7 +79,6 @@ class Register extends Component {
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                       id="email"
-                      name="email"
                       type="email"
                       placeholder="Enter your email"
                       name="email"

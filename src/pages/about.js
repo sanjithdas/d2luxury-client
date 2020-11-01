@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-28 09:27:45
+ * @modify date 2020-11-01 23:39:40
  * @desc [About page]
  */
 
@@ -12,9 +12,6 @@ import React from "react";
  * custom component insert
  */
 import  HeaderImage  from "../components/HeaderImage";
- 
-import Footer from "../components/FooterC"
-
 const About = () => {
   return (
     <section className="bg-light mt-0 mb-0">

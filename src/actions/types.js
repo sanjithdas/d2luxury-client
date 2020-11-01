@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-26 21:15:24
- * @modify date 2020-10-27 21:02:49
+ * @modify date 2020-11-01 21:46:47
  * @desc [Reducer Types]
  */
 
@@ -19,7 +19,8 @@ export const ADD_ROOM = "ADD_ROOM";
 export const GET_ROOM = "GET_ROOM";
 export const UPDATE_ROOM = "UPDATE_ROOM";
 export const DEL_ERROR = "DELL_ERROR";
-export const EDIT_ROOM = "EDIT_ROOM";
+export const EDIT_ROOM = "EDIT_ROOM"; 
+export const GET_MY_ROOM = "GET_MY_ROOM"; 
 // UIReducer
 export const SET_ERRORS = "SET_ERRORS"
 export const LOADING_UI = "LOADING_UI"

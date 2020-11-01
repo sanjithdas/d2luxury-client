@@ -2,24 +2,31 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-01 23:54:28
+ * @modify date 2020-11-01 22:28:18
  * @desc [Room component - listing all the rooms]
  */
- // React stuff
-import React, { Component, Fragment } from "react";
+
+ 
+import React, { Component, useEffect, useState , Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types"; //impt
+import jwtDecode from "jwt-decode"; 
 
-/**
+ /**
  * custom component insert
  */
-import Room from "../pages/room";
-import { getRooms } from "../actions/roomActions";
+import { getAllMyRooms } from "../../../actions/roomActions";
+import Room from "../../../pages/room";
 
-class Rooms extends Component {
+class MyRooms extends Component {
   // get this contacts from the API
   componentDidMount() {
-    this.props.getRooms();
+    const token = localStorage.FBIdToken;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
+      this.props.getAllMyRooms(decodedToken.user_id);
+    }
   }
 
   render() {                   
@@ -46,7 +53,7 @@ class Rooms extends Component {
     			  </div>
           
           <Fragment>
-         
+        <h1 className="display-4 text-primary"></h1>
         {
           // we are checking the contacts array for each of the contact objects
           rooms.map((room) => (
@@ -64,9 +71,9 @@ class Rooms extends Component {
   } // End of Render
 } // End of Component Contacts
 
-Rooms.propTypes = {
+MyRooms.propTypes = {
   //shortcut ptfr and ptar
-  getRooms: PropTypes.func.isRequired,
+  getAllMyRooms: PropTypes.func.isRequired,
   rooms: PropTypes.array.isRequired,
 };
 
@@ -76,4 +83,4 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated
 });
 
-export default connect(mapStateToProps, { getRooms })(Rooms);
+export default connect(mapStateToProps, { getAllMyRooms })(MyRooms);

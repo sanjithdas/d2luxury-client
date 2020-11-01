@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:31:08
- * @modify date 2020-10-27 23:22:21
+ * @modify date 2020-11-01 18:07:46
  * @desc [App Component - Main Component]
  */
 /**
@@ -21,7 +21,7 @@ import "./css/icomoon.css";
 import "./css/aos.css";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -37,16 +37,17 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { SET_AUTHENTICATED } from './actions/types';
-import {logoutUser, getUserData} from './actions/userActions';
+import { SET_AUTHENTICATED } from "./actions/types";
+import { logoutUser, getUserData } from "./actions/userActions";
 
 /**
- * impirt required component
+ * import required component
  * Home , Login , Rooms , About , Create room (admin)
  */
 
 import Home from "./pages/home";
 import Login from "../src/components/Login";
+import Logout from "../src/components/Logout";
 import Rooms from "../src/components/Rooms";
 import About from "../src/pages/about";
 import Contact from "../src/pages/contact";
@@ -56,14 +57,15 @@ import NavbarHeader from "./components/NavbarHeader";
 import room_details from "./pages/room_details";
 import Footer from "../src/components/FooterC";
 import AuthRoute from "./util/AuthRoute";
-import { Map, GoogleApiWrapper } from "google-maps-react";
 import jwtDecode from "jwt-decode";
+import Show from "./components/admin/rooms/Show";
+
 const mapStyles = {
   width: "100%",
   height: "100%",
 };
 
-let authenticated;
+//let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -73,8 +75,8 @@ if (token) {
     // this.props.push("/login");
     //authenticated = false;
   } else {
-    store.dispatch({ type : 'SET_AUTHENTICATED' });
-    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch({ type: "SET_AUTHENTICATED" });
+    axios.defaults.headers.common["Authorization"] = token;
     store.dispatch(getUserData());
     //authenticated = true;
   }
@@ -91,27 +93,20 @@ function App() {
   );
   return (
     <Provider store={store}>
-     
       <Router>
         <NavbarHeader />
         <Switch>
           <Route exact path="/" component={Home} />
-          <AuthRoute
-            exact
-            path="/login"
-            component={Login}
-           
-          />
+          <AuthRoute exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
+
           <Route exact path="/rooms" component={Rooms} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
-          <AuthRoute
-            exact
-            path="/register"
-            component={Register}
-            
-          />
+          <AuthRoute exact path="/register" component={Register} />
+          
           <Route path="/admin/room/create" component={Create} />
+          <Route path="/admin/room/show" component={Show} />
           <Route path="/room/details/:roomno" component={room_details} />
         </Switch>
 

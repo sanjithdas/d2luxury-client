@@ -2,16 +2,11 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-10-23 21:35:07
+ * @modify date 2020-11-01 23:41:40
  * @desc [Footer component]
  */
 
 import React from "react";
-
-
-
- 
- 
 
 const Footer = () => {
   return (
@@ -28,17 +23,17 @@ const Footer = () => {
                 </p>
                 <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                    <li className="">
-                    <a href="#">
+                    <a href="/">
                       <span className="icon-twitter"></span>
                     </a>
                   </li>
                   <li className="">
-                    <a href="#">
+                    <a href="/">
                       <span className="icon-facebook"></span>
                     </a>
                   </li>
                   <li className="">
-                    <a href="#">
+                    <a href="/">
                       <span className="icon-instagram"></span>
                     </a>
                   </li> 
@@ -50,22 +45,22 @@ const Footer = () => {
                 <h2 className="ftco-heading-2">Useful Links</h2>
                 <ul className="list-unstyled">
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Blog
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Rooms
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Amenities
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Gift Card
                     </a>
                   </li>
@@ -77,22 +72,22 @@ const Footer = () => {
                 <h2 className="ftco-heading-2">Privacy</h2>
                 <ul className="list-unstyled">
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Career
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       About Us
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Contact Us
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="py-2 d-block">
+                    <a href="/" className="py-2 d-block">
                       Services
                     </a>
                   </li>
@@ -111,13 +106,13 @@ const Footer = () => {
                       </span>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <span className="icon icon-phone"></span>
                         <span className="text">+2 392 3929 210</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/">
                         <span className="icon icon-envelope"></span>
                         <span className="text">info@yourdomain.com</span>
                       </a>

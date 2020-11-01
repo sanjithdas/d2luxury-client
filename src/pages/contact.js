@@ -54,11 +54,9 @@ class Contact extends Component {
         return false;
       } 
     };
-    const err = this.props.errors.value;
+    
     const sendEmail = (e) => {
-      
-
-      e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
+       e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
      if( handleSubmit()){;
       emailjs
         .sendForm(
@@ -211,13 +209,6 @@ class Contact extends Component {
     );
   }
 }
-
-// Contact.defaultProps = {
-//   name: "",
-//   email: "",
-//   subject: "",
-//   message: "",
-// };
 
 var validationOptions = {
   joiSchema: schema,

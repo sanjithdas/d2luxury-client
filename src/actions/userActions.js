@@ -4,20 +4,25 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
+  SET_AUTHENTICATED,
 } from "../actions/types";
 import axios from "axios";
 
 // user login
 export const loginUser = (userData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  console.log(userData);
+  //console.log(userData);
   axios
     .post("http://localhost:5000/d2luxuryredux/us-central1/api/login", userData)
     .then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
+      dispatch({
+         type: SET_AUTHENTICATED,
+          payload: res.data
+       });
       history.push("/admin/room/create/");
     })
     .catch((err) => {
@@ -42,8 +47,9 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     )
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      dispatch(getUserData());
-      dispatch({ type: CLEAR_ERRORS });
+     // dispatch(getUserData());
+     // dispatch({ type: CLEAR_ERRORS });
+      
       history.push("/admin/room/create");
     })
     .catch((err) => {
@@ -62,6 +68,7 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("FBIdToken");
   delete axios.defaults.headers.common["Authorization"];
   dispatch({ type: SET_UNAUTHENTICATED });
+  
 
   // console.log(userData);
   //   axios
@@ -87,7 +94,7 @@ export const logoutUser = () => (dispatch) => {
 
 export const getUserData = () => (dispatch) => {
   axios
-    .get("/user")
+    .get("http://localhost:5000/d2luxuryredux/us-central1/api/user")
     .then((res) => {
       dispatch({
         type: SET_USER,

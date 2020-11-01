@@ -10,7 +10,8 @@ export default function (state= initialState, action) {
     case SET_AUTHENTICATED:
       return{
         ...state,
-        authenticated: true
+        authenticated: true,
+        ...action.payload
       };
       case SET_UNAUTHENTICATED:
         return  initialState;
