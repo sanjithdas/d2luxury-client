@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-03 13:57:06
+ * @modify date 2020-11-03 21:40:08
  * @desc [Create New Room - admin only]
  */
 import { connect } from "react-redux";
@@ -23,6 +23,7 @@ class Create extends Component {
       bedType: "",
       roomRate: "",
       description: "",
+      imageUrl: "",
       errors: {},
     };
   }
@@ -79,6 +80,7 @@ class Create extends Component {
       bedType: this.state.bedType,
       roomRate: this.state.roomRate,
       description: this.state.description,
+      imageUrl: this.state.imageUrl,
     };
     this.props.addRoom(newRoom);
     this.props.history.push("admin/../show");
@@ -102,7 +104,11 @@ class Create extends Component {
                   <span className="text-black">Create Room</span>
                 </h1>
 
-                <Form onSubmit={this.onSubmit}>
+                <Form
+                  onSubmit={this.onSubmit}
+                  encType="multipart/form-data"
+                  method="post"
+                >
                   <Form.Group controlId="roomno">
                     <Form.Label>Room number</Form.Label>
                     <Form.Control
@@ -218,13 +224,13 @@ class Create extends Component {
                     )}
                   </Form.Group>
 
-                  <Form.Group controlId="room_img">
+                  <Form.Group controlId="imageUrl">
                     <Form.Label>Upload Photo</Form.Label>
-                    <Form.Control
+                    <Form.File
                       name="imageUrl"
-                      type="file"
-                      value=""
-                    ></Form.Control>
+                      value={this.state.imageUrl}
+                      onChange={this.onChange}
+                    ></Form.File>
                   </Form.Group>
 
                   <Button type="submit" variant="black" className="btn-block">

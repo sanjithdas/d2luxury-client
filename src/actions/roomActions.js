@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-11-03 12:25:50
+ * @modify date 2020-11-03 22:38:29
  * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
  */
 import {
@@ -85,8 +85,9 @@ export const deleteRoom = (id) => async (dispatch) => {
 
 /**
  * create a new room
- * @param {} contact
+ * @param {} room
  */
+
 export const addRoom = (room) => async (dispatch) => {
   //console.log(room);
   const res = await axios.post(
