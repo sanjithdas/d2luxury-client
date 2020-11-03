@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-11-01 21:56:04
+ * @modify date 2020-11-03 12:25:50
  * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
  */
 import {
@@ -34,12 +34,10 @@ export const getRooms = () => async (dispatch) => {
  */
 
 export const getRoom = (roomno) => async (dispatch) => {
-  console.log(roomno);
   const res = await axios.get(
     `http://localhost:5000/d2luxuryredux/us-central1/api/room/${roomno}`
   );
-  console.log("get room.....");
-  console.log(res.data);
+
   dispatch({
     type: GET_ROOM,
     payload: res.data,
@@ -53,12 +51,10 @@ export const getRoom = (roomno) => async (dispatch) => {
  */
 
 export const getAllMyRooms = (userId) => async (dispatch) => {
-  console.log(userId);
   const res = await axios.get(
     `http://localhost:5000/d2luxuryredux/us-central1/api/myrooms/${userId}`
   );
-  console.log("get my rooms.....");
-  console.log(res.data);
+
   dispatch({
     type: GET_MY_ROOM,
     payload: res.data,
@@ -70,8 +66,11 @@ export const getAllMyRooms = (userId) => async (dispatch) => {
  * @param {} id
  */
 export const deleteRoom = (id) => async (dispatch) => {
+  console.log(id);
   try {
-    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+    await axios.delete(
+      `http://localhost:5000/d2luxuryredux/us-central1/api/myroom/delete/${id}`
+    );
     dispatch({
       type: DELETE_ROOM,
       payload: id,
@@ -106,10 +105,11 @@ export const addRoom = (room) => async (dispatch) => {
  * @param {
  * } contact
  */
-export const updateRoom = (contact) => async (dispatch) => {
+export const updateRoom = (room) => async (dispatch) => {
+  console.log(room);
   const res = await axios.put(
-    `https://jsonplaceholder.typicode.com/users/${contact.id}`,
-    contact
+    `http://localhost:5000/d2luxuryredux/us-central1/api/myroom/update/${room.userId}`,
+    room
   );
   dispatch({
     type: UPDATE_ROOM,

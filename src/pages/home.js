@@ -2,14 +2,13 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 16:35:39
- * @modify date 2020-10-24 22:01:00
+ * @modify date 2020-11-02 00:21:31
  * @desc [Home page]
  */
 import React from "react";
 import { HeaderImage } from "../components/HeaderImage";
 import Rooms from "../pages/rooms";
 import Blogs from "../pages/blogs";
-import Footer from "../components/FooterC"
 
 export const Home = () => {
   return (
@@ -19,12 +18,12 @@ export const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 pr-1 aside-stretch">
-              <form action="#" className="booking-form">
+              <form action="/" className="booking-form">
                 <div className="row">
                   <div className="col-md d-flex py-md-4">
                     <div className="form-group align-self-stretch d-flex align-items-end">
                       <div className="wrap bg-white align-self-stretch py-3 px-4">
-                        <label for="#">Check-in Date</label>
+                        <label for="/">Check-in Date</label>
                         <input
                           type="text"
                           className="form-control checkin_date"
@@ -37,7 +36,7 @@ export const Home = () => {
                   <div className="col-md d-flex py-md-4">
                     <div className="form-group align-self-stretch d-flex align-items-end">
                       <div className="wrap bg-white align-self-stretch py-3 px-4">
-                        <label for="#">Check-out Date</label>
+                        <label for="/">Check-out Date</label>
                         <input
                           type="text"
                           className="form-control checkout_date"
@@ -50,7 +49,7 @@ export const Home = () => {
                   <div className="col-md d-flex py-md-4">
                     <div className="form-group align-self-stretch d-flex align-items-end">
                       <div className="wrap bg-white align-self-stretch py-3 px-4">
-                        <label for="#">Room</label>
+                        <label for="/">Room</label>
                         <div className="form-field">
                           <div className="select-wrap">
                             <div className="icon">
@@ -72,7 +71,7 @@ export const Home = () => {
 
                   <div className="form-field  mt-2" id="guest-collapse">
                     <div className="wrap bg-white align-self-stretch py-3 px-4 brder-radius">
-                      <label for="#" className="font-weight-bold">
+                      <label for="/" className="font-weight-bold">
                         Adult
                       </label>
                       <div className="guest-quantity">
@@ -87,6 +86,7 @@ export const Home = () => {
                             placeholder="1"
                           />
                           <a
+                            href="/"
                             onclick="counterAdult(2)"
                             className="quantity-plus"
                             id="plus-adult"
@@ -95,7 +95,7 @@ export const Home = () => {
                           </a>
                         </div>
                       </div>
-                      <label for="#" className="font-weight-bold">
+                      <label for="/" className="font-weight-bold">
                         Kids
                       </label>
                       <div className="guest-quantity">
@@ -112,6 +112,7 @@ export const Home = () => {
                           />
 
                           <a
+                            href="/"
                             onclick="counterKids(1)"
                             className="quantity-minus"
                             id="minus-kid"
@@ -126,7 +127,7 @@ export const Home = () => {
                   <div className="col-md d-flex">
                     <div className="form-group d-flex align-self-stretch">
                       <a
-                        href="#"
+                        href="/"
                         className="btn btn-black py-5 py-md-3 px-4 align-self-stretch d-block"
                       >
                         <span>
@@ -148,7 +149,7 @@ export const Home = () => {
           <div className="row no-gutters">
             <div className="col-md-3">
               <a
-                href="#"
+                href="/"
                 onclick="currentDiv(1)"
                 className="demo w3-opacity w3-hover-opacity-off services-wrap img align-items-end d-flex special-room-1"
               >
@@ -160,7 +161,7 @@ export const Home = () => {
 
             <div className="col-md-3">
               <a
-                href="#"
+                href="/"
                 onclick="currentDiv(1)"
                 className="demo w3-opacity w3-hover-opacity-off services-wrap img align-items-end d-flex special-room-2"
               >
@@ -172,7 +173,7 @@ export const Home = () => {
 
             <div className="col-md-3">
               <a
-                href="#"
+                href="/"
                 onclick="currentDiv(1)"
                 className="demo w3-opacity w3-hover-opacity-off services-wrap img align-items-end d-flex special-room-3"
               >
@@ -184,7 +185,7 @@ export const Home = () => {
 
             <div className="col-md-3">
               <a
-                href="#"
+                href="/"
                 onclick="currentDiv(1)"
                 className="demo w3-opacity w3-hover-opacity-off services-wrap img align-items-end d-flex special-room-4"
               >
@@ -209,18 +210,18 @@ export const Home = () => {
             </div>
           </div>
         </div>
-         <div className="row d-flex">
-            <div className="col-md pr-md-1 d-flex align-self-stretch">
-              <div className="media block-6 services py-4 d-block text-center">
-                <div className="d-flex justify-content-center">
-                  <div className="icon d-flex align-items-center justify-content-center">
-                    <span className="flaticon-reception-bell"></span>
-                  </div>
-                </div>
-                <div className="media-body">
-                  <h3 className="heading mb-3">Friendly Service</h3>
+        <div className="row d-flex">
+          <div className="col-md pr-md-1 d-flex align-self-stretch">
+            <div className="media block-6 services py-4 d-block text-center">
+              <div className="d-flex justify-content-center">
+                <div className="icon d-flex align-items-center justify-content-center">
+                  <span className="flaticon-reception-bell"></span>
                 </div>
               </div>
+              <div className="media-body">
+                <h3 className="heading mb-3">Friendly Service</h3>
+              </div>
+            </div>
           </div>
           <div className="col-md px-md-1 d-flex align-self-stretch">
             <div className="media block-6 services active py-4 d-block text-center">
@@ -274,7 +275,6 @@ export const Home = () => {
       </section>
       <Rooms />
       <Blogs />
-      
     </div>
   );
 };

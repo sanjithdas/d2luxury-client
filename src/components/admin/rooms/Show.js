@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-01 23:45:23
+ * @modify date 2020-11-02 00:01:43
  * @desc [Room component - listing all the rooms of a registered user]
  */
 // React stuff
@@ -20,7 +20,7 @@ import HeaderImage from "../../HeaderImage";
 
 class Show extends Component {
   render() {
-    const { rooms } = this.props;
+    
     return (
       <section className="bg-light mt-0">
         <HeaderImage />

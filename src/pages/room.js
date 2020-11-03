@@ -1,3 +1,10 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-11-02 10:30:31
+ * @modify date 2020-11-02 10:32:02
+ * @desc [individual room listing]
+ */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -29,7 +36,9 @@ class Room extends Component {
             href="/"
             style={{ backgroundImage: "url(" + imageUrl + ")" }}
             className="img"
-          ></a>
+          >
+            &nbsp;
+          </a>
           <div className="half left-arrow d-flex align-items-center">
             <div className="text p-4 p-xl-5 text-center">
               <p className="star mb-0">
@@ -55,6 +64,7 @@ class Room extends Component {
                   <span className="icon-long-arrow-right"></span>
                 </Link>
               </p>
+              
             </div>
           </div>
         </div>

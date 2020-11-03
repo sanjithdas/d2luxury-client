@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-01 22:48:58
+ * @modify date 2020-11-03 13:57:06
  * @desc [Create New Room - admin only]
  */
 import { connect } from "react-redux";
@@ -90,8 +90,6 @@ class Create extends Component {
     });
   };
   render() {
-    //const { roomno, roomType , occupants, bedType  , phone, errors } = this.state;
-    console.log(this.props.room);
     return (
       <div>
         <Row className="mt-5 mb-5">
@@ -101,7 +99,7 @@ class Create extends Component {
               <Card.Body>
                 <h1 className="text-center pb-4, pt-3">
                   <FontAwesomeIcon icon="lock" className="text-primary" />{" "}
-                  <span className="text-black">Create  Room</span>
+                  <span className="text-black">Create Room</span>
                 </h1>
 
                 <Form onSubmit={this.onSubmit}>
@@ -220,6 +218,15 @@ class Create extends Component {
                     )}
                   </Form.Group>
 
+                  <Form.Group controlId="room_img">
+                    <Form.Label>Upload Photo</Form.Label>
+                    <Form.Control
+                      name="imageUrl"
+                      type="file"
+                      value=""
+                    ></Form.Control>
+                  </Form.Group>
+
                   <Button type="submit" variant="black" className="btn-block">
                     Create Room
                   </Button>
@@ -228,7 +235,9 @@ class Create extends Component {
             </Card>
           </Col>
           <Col md={3} className="mx-auto">
-            <a class="btn btn-black text-white" href="/admin/room/show">My Rooms</a>
+            <a className="btn btn-black text-white" href="/admin/room/show">
+              My Rooms
+            </a>
           </Col>
         </Row>
       </div>
@@ -243,7 +252,7 @@ Create.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.user,
   authenticated: state.user.authenticated,
-  room: state.room.room
+  room: state.room.room,
 });
 
 export default connect(mapStateToProps, { addRoom })(Create);

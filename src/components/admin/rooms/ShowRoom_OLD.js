@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-24 14:07:20
- * @modify date 2020-10-31 22:15:52
+ * @modify date 2020-11-02 12:01:07
  * @desc [Individual Room Details]
  */
 import React, { Component } from "react";
@@ -30,44 +30,38 @@ class ShowRoom extends Component {
     errors: {},
   };
 
-  
-  componentWillReceiveProps(nextProps, nextState){
-   console.log(nextProps+ '--'+nextState);
+  componentWillReceiveProps(nextProps, nextState) {
+    console.log(nextProps + "--" + nextState);
     const {
-          roomno,  
-          description,
-          roomType,
-          roomRate,
-          imageUrl,
-          occupants,
-          bedType,
-        } = nextProps.room 
+      roomno,
+      description,
+      roomType,
+      roomRate,
+      imageUrl,
+      occupants,
+      bedType,
+    } = nextProps.room;
 
-        this.setState({
-          // name is the same as name: name in this case
-          nextProps,
-          roomno,  
-          description,
-          roomType,
-          roomRate,
-          imageUrl,
-          occupants,
-          bedType,
-          })
-          
-          }
-        
-  
+    this.setState({
+      // name is the same as name: name in this case
+      nextProps,
+      roomno,
+      description,
+      roomType,
+      roomRate,
+      imageUrl,
+      occupants,
+      bedType,
+    });
+  }
 
   componentDidMount() {
     const { roomno } = this.props.match.params;
-   // console.log(this.props.match.params);
+    // console.log(this.props.match.params);
     this.props.getRoom(roomno);
-   
   }
 
   render() {
-
     //const roomno = this.pr
     const {
       bedType,
@@ -77,13 +71,12 @@ class ShowRoom extends Component {
       roomRate,
       roomType,
       roomno,
-      userId 
-      
+      userId,
     } = this.props.room;
     console.log(this.props.room);
     var myArray = Object.values(this.props.room);
     console.log(myArray);
-    
+
     return (
       <div>
         <HeaderImage />
@@ -144,10 +137,10 @@ class ShowRoom extends Component {
                     </div>
                   </div>
                   <div className="col-md-12 room-single mt-4 mb-5 ">
-                    <h2 className="mb-4">
-                      {roomType}{" "}
+                    {/* <h2 className="mb-4">
+                      {roomType} sdss
                       <span>
-                        <Link to={`/admin/rooms/edit/`}>
+                        <Link to={"admin/room/edit"}>
                           <FontAwesomeIcon
                             icon="pencil-alt"
                             className="btn btn-primary"
@@ -176,7 +169,7 @@ class ShowRoom extends Component {
                           ></FontAwesomeIcon>
                         </Link>
                       </span>
-                    </h2>
+                    </h2> */}
 
                     <p>{description}</p>
                     <div className="d-md-flex mt-5 mb-5">
@@ -200,7 +193,6 @@ class ShowRoom extends Component {
                         </span>
                       </ul>
                     </div>
-                    <p>{description}.</p>
                   </div>
 
                   <div className="col-md-12 room-single mb-5 mt-4">
@@ -436,7 +428,7 @@ class ShowRoom extends Component {
 }
 
 ShowRoom.propTypes = {
-   room: PropTypes.object.isRequired,
+  room: PropTypes.object.isRequired,
   getRoom: PropTypes.func.isRequired,
   // updateContact: PropTypes.func.isRequired,
 };

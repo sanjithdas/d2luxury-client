@@ -18,8 +18,9 @@ reactJoiValidation.setJoi(Joi);
 
 var schema = Joi.object().keys({
   name: Joi.string()
-    .required().label('Name')
-    .error(errors => "Name is required"),
+    .required()
+    .label("Name")
+    .error((errors) => "Name is required"),
   email: Joi.string().required().email().min(5).label("Email"),
   subject: Joi.string().required(),
   message: Joi.string().required(),
@@ -28,13 +29,13 @@ var schema = Joi.object().keys({
 class Contact extends Component {
   constructor(props) {
     super(props);
-      this.state={
-       name:'',
-       email:'',
-       subject:'',
-       message:'',
-       errors:'',
-      }
+    this.state = {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+      errors: "",
+    };
   }
 
   render() {
@@ -49,35 +50,34 @@ class Contact extends Component {
       alert(name);
       if (Object.keys(this.props.user).length <= 0) {
         //this.props.errors='Data Missing';
-        errors='All the fields are required';
+        errors = "All the fields are required";
         console.log(this.props.errors);
         return false;
-      } 
+      }
     };
-    
+
     const sendEmail = (e) => {
-       e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
-     if( handleSubmit()){;
-      emailjs
-        .sendForm(
-          "gmail",
-          "template_bycrbsg",
-          e.target
-          // "user_JoXMOLyUnnZS9K58BUWGB"
-        )
-        .then(
-          (result) => {
-            window.location.reload(); //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
+      if (handleSubmit()) {
+        emailjs
+          .sendForm(
+            "gmail",
+            "template_bycrbsg",
+            e.target
+            // "user_JoXMOLyUnnZS9K58BUWGB"
+          )
+          .then(
+            (result) => {
+              window.location.reload(); //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
+            },
+            (error) => {
+              console.log(error.text);
+            }
+          );
       }
     };
 
     return (
-      
       <section className="bg-light mt-0 mb-0">
         <HeaderImage />
 
@@ -86,7 +86,6 @@ class Contact extends Component {
             <div className="col-md-9  text-center d-flex align-items-end justify-content-center">
               <div className="text">
                 <h1 className="mb-4 bread">Contact us</h1>
-                
               </div>
             </div>
           </div>
@@ -124,7 +123,7 @@ class Contact extends Component {
               <div className="col-md-3 d-flex">
                 <div className="info bg-white p-4">
                   <p>
-                    <span>Website</span> <a href="#">yoursite.com</a>
+                    <span>Website</span> <a href="/">yoursite.com</a>
                   </p>
                 </div>
               </div>
@@ -139,7 +138,7 @@ class Contact extends Component {
                   <div className="form-group">
                     <input
                       type="text"
-                      value={ name }
+                      value={name}
                       className="form-control"
                       placeholder="Your Name"
                       onChange={changeHandler("name")}

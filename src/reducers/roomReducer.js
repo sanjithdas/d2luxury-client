@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 20:28:55
- * @modify date 2020-11-01 21:59:10
+ * @modify date 2020-11-02 14:47:36
  * @desc [Reducer - update the state]
  */
 
@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
     case GET_ROOM:
       return {
         ...state,
-        room: action.payload,
+        room: Object.assign(action.payload),
       };
     case GET_MY_ROOM:
       return {

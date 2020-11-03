@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-01 10:08:14
+ * @modify date 2020-11-02 00:10:58
  * @desc [Login Component]
  */
 //react 
@@ -12,8 +12,7 @@ import { Link } from "react-router-dom";
 
 // styles
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// user action
+ // user action
 import { loginUser } from "../actions/userActions";
 //props
 import PropTypes from "prop-types";

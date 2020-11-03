@@ -2,13 +2,13 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:31:08
- * @modify date 2020-11-01 18:07:46
+ * @modify date 2020-11-02 12:41:04
  * @desc [App Component - Main Component]
  */
 /**
  * import react and installed modules.
  */
-import React, { Fragment } from "react";
+import React from "react";
 
 /**
  * import all styles
@@ -37,7 +37,6 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { SET_AUTHENTICATED } from "./actions/types";
 import { logoutUser, getUserData } from "./actions/userActions";
 
 /**
@@ -53,17 +52,13 @@ import About from "../src/pages/about";
 import Contact from "../src/pages/contact";
 import Register from "../src/pages/register";
 import Create from "../src/components/admin/rooms/Create";
+import Edit from "../src/components/admin/rooms/EditRoom";
 import NavbarHeader from "./components/NavbarHeader";
-import room_details from "./pages/room_details";
+import RoomDetails from "./pages/roomDetails";
 import Footer from "../src/components/FooterC";
 import AuthRoute from "./util/AuthRoute";
 import jwtDecode from "jwt-decode";
 import Show from "./components/admin/rooms/Show";
-
-const mapStyles = {
-  width: "100%",
-  height: "100%",
-};
 
 //let authenticated;
 const token = localStorage.FBIdToken;
@@ -104,10 +99,12 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <AuthRoute exact path="/register" component={Register} />
-          
+
           <Route path="/admin/room/create" component={Create} />
           <Route path="/admin/room/show" component={Show} />
-          <Route path="/room/details/:roomno" component={room_details} />
+          <Route path="/admin/room/edit/:roomno" component={Edit} />
+
+          <Route path="/room/details/:roomno" component={RoomDetails} />
         </Switch>
 
         <Footer />

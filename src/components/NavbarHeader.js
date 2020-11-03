@@ -2,14 +2,13 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2020-10-30 21:05:43
+ * @modify date 2020-11-02 00:10:36
  * @desc [NavBar Component]
  */
 
 import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 
 
@@ -33,10 +32,7 @@ const Styles = styled.div`
 `;
 
 class  NavbarHeader extends Component{
-  constructor(){
-    super();
-  }
-  
+ 
   render(){
     const authenticated = this.props.authenticated 
     
