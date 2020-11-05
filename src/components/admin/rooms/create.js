@@ -2,15 +2,26 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-05 18:07:28
- * @desc [Create New Room - admin [Registered user] only]
+ * @modify date 2020-11-05 18:36:19
+ * @desc [Create New Room - Registered user only]
  */
+//react Stuff
 import { connect } from "react-redux";
 import React, { Component } from "react";
+
+// react bootstrap stuff
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
+
+// Font/ styles
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
+
+// uuid - unique identifier create
+import { v4 as uuidv4 } from "uuid";
+// Prop types
 import PropTypes from "prop-types";
+
+// custom methods
 import { addRoom, addRoomImage } from "../../../actions/roomActions";
 
 class Create extends Component {
@@ -35,15 +46,6 @@ class Create extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  // onImageChange
-
-  // onImageChange = (e) => {
-  //   let file = e.target.files[0];
-
-  //   this.setState({
-  //     imageUrl: file,
-  //   });
-  // };
 
   /**
    * {validate data on submit the form}
@@ -92,7 +94,7 @@ class Create extends Component {
     }
 
     const newRoom = {
-      roomno: this.state.roomno,
+      roomno: uuidv4(),
       roomType: this.state.roomType,
       occupants: this.state.occupants,
       bedType: this.state.bedType,
