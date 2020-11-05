@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-03 13:41:09
+ * @modify date 2020-11-05 18:12:37
  * @desc [Create New Room - admin only]
  */
 import { connect } from "react-redux";
@@ -11,7 +11,12 @@ import { Row, Col, Form, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import { addRoom, updateRoom, getRoom } from "../../../actions/roomActions";
+import {
+  addRoom,
+  updateRoom,
+  getRoom,
+  addRoomImage,
+} from "../../../actions/roomActions";
 
 class EditRoom extends Component {
   state = {
@@ -65,13 +70,22 @@ class EditRoom extends Component {
     });
   };
 
+  // on image select
+  onImageChange = (e) => {
+    let file = e.target.files[0];
+
+    this.setState({
+      imageUrl: file,
+    });
+  };
+
   /**
    * {validate data on submit the form}
    * @param  e
    */
   onSubmit = (e) => {
     e.preventDefault();
-
+    const formData = new FormData();
     const {
       roomno,
       roomType,
@@ -120,6 +134,10 @@ class EditRoom extends Component {
       return;
     }
 
+    formData.append("image", this.state.imageUrl);
+    console.log(this.props.room.roomId);
+    formData.append("docId", this.props.room[0].userId);
+
     // create a new room object
     const updRoom = {
       roomno,
@@ -130,7 +148,10 @@ class EditRoom extends Component {
       description,
       userId,
     };
+
     this.props.updateRoom(updRoom);
+    this.props.addRoomImage(formData, this.props.room[0].userId);
+    this.props.getRoom(roomno);
     this.props.history.push("/admin/room/show");
     // this.props.history.push("admin/room/show");
   };
@@ -158,7 +179,7 @@ class EditRoom extends Component {
                   <span className="text-black">Edit Room</span>
                 </h1>
 
-                <Form onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit} enctype="multipart/form-data">
                   <Form.Group controlId="roomno">
                     <Form.Label>Room number</Form.Label>
                     <Form.Control
@@ -273,6 +294,15 @@ class EditRoom extends Component {
                     )}
                   </Form.Group>
 
+                  <Form.Group controlId="imageUrl">
+                    <input
+                      type="file"
+                      name="imageUrl"
+                      onChange={this.onImageChange}
+                      accept="image/*"
+                    />
+                  </Form.Group>
+
                   <Button type="submit" variant="black" className="btn-block">
                     Update
                   </Button>
@@ -295,6 +325,7 @@ EditRoom.propTypes = {
   getRoom: PropTypes.func.isRequired,
   addRoom: PropTypes.func.isRequired,
   updateRoom: PropTypes.func.isRequired,
+  addRoomImage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -307,6 +338,7 @@ const mapActionsToProps = {
   addRoom,
   updateRoom,
   getRoom,
+  addRoomImage,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(EditRoom);

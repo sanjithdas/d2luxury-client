@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-11-03 22:38:29
+ * @modify date 2020-11-05 16:58:30
  * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
  */
 import {
@@ -89,7 +89,7 @@ export const deleteRoom = (id) => async (dispatch) => {
  */
 
 export const addRoom = (room) => async (dispatch) => {
-  //console.log(room);
+  console.log(room);
   const res = await axios.post(
     `http://localhost:5000/d2luxuryredux/us-central1/api/room`,
     room
@@ -98,6 +98,28 @@ export const addRoom = (room) => async (dispatch) => {
     type: ADD_ROOM,
     payload: res.data,
   });
+  // history.push("/admin/room/show");
+};
+
+export const addRoomImage = (roomImage, userId) => async (dispatch) => {
+  console.log(roomImage);
+  console.log(userId);
+  for (var pair of roomImage.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
+  }
+  const res = await axios({
+    method: "post",
+    url: `http://localhost:5000/d2luxuryredux/us-central1/api/room/image/${userId}`,
+    data: roomImage,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  console.log(res);
+
+  // dispatch({
+  //   type: ADD_ROOM,
+  //   payload: res.data,
+  // });
   // history.push("/admin/room/show");
 };
 

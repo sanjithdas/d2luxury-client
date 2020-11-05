@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-03 13:28:05
- * @modify date 2020-11-03 13:33:41
+ * @modify date 2020-11-05 18:14:25
  * @desc [Get the rooms belongs to the logged in users]
  */
 import React, { Component } from "react";
@@ -32,6 +32,15 @@ class MyRoom extends Component {
       this.props.getAllMyRooms(decodedToken.user_id);
     }
   };
+
+  componentDidMount() {
+    const token = localStorage.FBIdToken;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
+      this.props.getAllMyRooms(decodedToken.user_id);
+    }
+  }
 
   render() {
     // pull the variables from the props (as this is passed from the  component)

@@ -2,8 +2,8 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-03 21:40:08
- * @desc [Create New Room - admin only]
+ * @modify date 2020-11-05 18:07:28
+ * @desc [Create New Room - admin [Registered user] only]
  */
 import { connect } from "react-redux";
 import React, { Component } from "react";
@@ -11,7 +11,7 @@ import { Row, Col, Form, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import { addRoom } from "../../../actions/roomActions";
+import { addRoom, addRoomImage } from "../../../actions/roomActions";
 
 class Create extends Component {
   constructor() {
@@ -23,16 +23,35 @@ class Create extends Component {
       bedType: "",
       roomRate: "",
       description: "",
-      imageUrl: "",
+      imageUrl: null,
+      files: null,
       errors: {},
     };
   }
+  // on change form set the component state
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+  // onImageChange
+
+  // onImageChange = (e) => {
+  //   let file = e.target.files[0];
+
+  //   this.setState({
+  //     imageUrl: file,
+  //   });
+  // };
 
   /**
    * {validate data on submit the form}
    * @param  e
    */
   onSubmit = (e) => {
+    const formData = new FormData();
+
     e.preventDefault();
     if (this.state.roomno === "") {
       this.setState({
@@ -72,7 +91,6 @@ class Create extends Component {
       return;
     }
 
-    // create a new room object
     const newRoom = {
       roomno: this.state.roomno,
       roomType: this.state.roomType,
@@ -80,17 +98,17 @@ class Create extends Component {
       bedType: this.state.bedType,
       roomRate: this.state.roomRate,
       description: this.state.description,
-      imageUrl: this.state.imageUrl,
     };
+    console.log(formData.entries());
     this.props.addRoom(newRoom);
+    // this.props.addRoomImage(formData);
     this.props.history.push("admin/../show");
+
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
   };
-  // on change form set the component state
-  onChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+
   render() {
     return (
       <div>
@@ -104,9 +122,9 @@ class Create extends Component {
                   <span className="text-black">Create Room</span>
                 </h1>
 
-                <Form
+                <form
                   onSubmit={this.onSubmit}
-                  encType="multipart/form-data"
+                  enctype="multipart/form-data"
                   method="post"
                 >
                   <Form.Group controlId="roomno">
@@ -224,19 +242,27 @@ class Create extends Component {
                     )}
                   </Form.Group>
 
-                  <Form.Group controlId="imageUrl">
+                  {/* <Form.Group controlId="imageUrl">
                     <Form.Label>Upload Photo</Form.Label>
                     <Form.File
                       name="imageUrl"
-                      value={this.state.imageUrl}
-                      onChange={this.onChange}
+                      onChange={this.onImageChange}
                     ></Form.File>
-                  </Form.Group>
+                  </Form.Group> */}
+
+                  {/* <Form.Group controlId="imageUrl">
+                    <input
+                      type="file"
+                      name="imageUrl"
+                      onChange={this.onImageChange}
+                      accept="image/*"
+                    />
+                  </Form.Group> */}
 
                   <Button type="submit" variant="black" className="btn-block">
                     Create Room
                   </Button>
-                </Form>
+                </form>
               </Card.Body>
             </Card>
           </Col>
@@ -253,6 +279,7 @@ class Create extends Component {
 
 Create.propTypes = {
   addRoom: PropTypes.func.isRequired,
+  addRoomImage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -261,4 +288,9 @@ const mapStateToProps = (state) => ({
   room: state.room.room,
 });
 
-export default connect(mapStateToProps, { addRoom })(Create);
+const mapActionsToProps = {
+  addRoom,
+  addRoomImage,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Create);
