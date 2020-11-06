@@ -2,21 +2,28 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-24 14:07:20
- * @modify date 2020-11-02 00:49:30
+ * @modify date 2020-11-06 14:32:55
  * @desc [Individual Room Details]
  */
+// react stuff import
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+// custom component insert
 import { getRoom } from "../actions/roomActions";
 import HeaderImage from "../components/HeaderImage";
 import imgroom from "../images/room-3.jpg";
 import imgroom_ from "../images/room-4.jpg";
 
+// bootstrap carousel
 import Carousel from "react-bootstrap/Carousel";
 
+// import htm-react-arser
+import Parser from "html-react-parser";
+
 class RoomDetails extends Component {
+  // intitalise the component state
   state = {
     userId: "",
     roomno: "",
@@ -27,7 +34,7 @@ class RoomDetails extends Component {
     occupants: "",
     errors: {},
   };
-
+  // react life cycle method
   componentWillReceiveProps(nextProps, nextState) {
     const {
       userId,
@@ -41,7 +48,15 @@ class RoomDetails extends Component {
     } = nextProps.room[0];
 
     this.setState({
-      // name is the same as name: name in this case
+      description: description,
+      occupants: occupants,
+      bedType: bedType,
+      roomType: roomType,
+      imageUrl: imageUrl,
+    });
+
+    this.setState({
+      //     // name is the same as userId: userId in this case
       userId,
       roomno,
       description,
@@ -52,16 +67,14 @@ class RoomDetails extends Component {
       bedType,
     });
   }
-
+  // component did mount - get the room with a room id.
   componentDidMount() {
-    const { roomno } = this.props.match.params;
-    console.log(this.props.match.params);
+    const roomno = this.props.match.params.roomno;
     this.props.getRoom(roomno);
+    console.log(this.props.room);
   }
 
   render() {
-    const { description, imageUrl, roomType, bedType, occupants } = this.state;
-
     return (
       <div>
         <HeaderImage />
@@ -77,7 +90,7 @@ class RoomDetails extends Component {
                         <Carousel.Item>
                           <img
                             className="d-block w-100"
-                            src={imageUrl}
+                            src={this.state.imageUrl}
                             alt="First slide"
                           />
                           <Carousel.Caption>
@@ -120,13 +133,13 @@ class RoomDetails extends Component {
                   </div>
                   <div className="col-md-12 room-single mt-4 mb-5 ">
                     <h2 className="mb-4">
-                      {roomType} <span></span>
+                      {this.state.roomType} <span></span>
                     </h2>
-                    <p>{description}</p>
+                    <p>{Parser(this.state.description)}</p>
                     <div className="d-md-flex mt-5 mb-5">
                       <ul className="list">
                         <li>
-                          <span>Max Occupants: {occupants}</span>
+                          <span>Max Occupants: {this.state.occupants}</span>
                         </li>
                         <li>
                           <span className="alert-danger">Size:</span> 45 m2
@@ -139,7 +152,7 @@ class RoomDetails extends Component {
                         <span>Bed Types:</span>
                         <span>
                           <i>
-                            <b>{bedType}</b>
+                            <b>{this.state.bedType}</b>
                           </i>
                         </span>
                       </ul>
@@ -150,40 +163,58 @@ class RoomDetails extends Component {
                     <h3 className="mb-4">Take A Tour</h3>
                     <div className="block-16">
                       <figure>
-                        <img
-                          src="http://d2luxury.me/images/room-1.jpg"
-                          alt="room1"
-                          className="img-fluid "
-                        />
-                        <a
-                          href="https://vimeo.com/45830194"
-                          className="play-button"
-                        >
-                          <span className="icon-play"></span>
-                        </a>
+                        <div className="single-slider owl-carousel">
+                          <Carousel>
+                            <Carousel.Item>
+                              <img
+                                className="d-block w-100"
+                                src={this.state.imageUrl}
+                                alt="First slide"
+                              />
+                              <Carousel.Caption>
+                                <p>
+                                  Nulla vitae elit libero, a pharetra augue
+                                  mollis interdum.
+                                </p>
+                              </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                              <img
+                                className="d-block w-100"
+                                src={imgroom}
+                                alt=""
+                              />
+
+                              <Carousel.Caption>
+                                <p>
+                                  Lorem ipsum dolor sit amet, consectetur
+                                  adipiscing elit.
+                                </p>
+                              </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                              <img
+                                className="d-block w-100"
+                                src={imgroom_}
+                                alt="Third slide"
+                              />
+
+                              <Carousel.Caption>
+                                <p>
+                                  Praesent commodo cursus magna, vel scelerisque
+                                  nisl consectetur.
+                                </p>
+                              </Carousel.Caption>
+                            </Carousel.Item>
+                          </Carousel>
+                          {/* <div className="item">
+                              <div className="room-img"
+                               style={{backgroundImage: "url("+imageUrl+")" }} ></div>
+                          </div> */}
+                        </div>
                       </figure>
                     </div>
                   </div>
-                </div>
-
-                <div className="block-16 mt-5">
-                  <figure>
-                    <a href="http://d2luxury.me/booking/1">
-                      <img
-                        src="http://d2luxury.me/images/bookmenow.jpg"
-                        className="btn-sm d-none"
-                        width="150px"
-                        height="50px"
-                        align="right"
-                        alt="image2"
-                      />
-                    </a>
-                    <a href="/">
-                      <div className="btn btn-primary font-weight-bold  text-center btn-sm d-none">
-                        Reserve
-                      </div>
-                    </a>
-                  </figure>
                 </div>
               </div>
 
@@ -224,14 +255,7 @@ class RoomDetails extends Component {
                 <div className="sidebar-box ">
                   <h3>Recent Blog</h3>
                   <div className="block-21 mb-4 d-flex">
-                    <a
-                      href="/"
-                      className="blog-img mr-4"
-                      style={{
-                        backgroundImage:
-                          "url(http://d2luxury.me/../images/image_1.jpg)",
-                      }}
-                    >
+                    <a href="/" className="blog-img mr-4 block-20 blog-img-1">
                       &nbsp;
                     </a>
                     <div className="text">
@@ -262,14 +286,7 @@ class RoomDetails extends Component {
                     </div>
                   </div>
                   <div className="block-21 mb-4 d-flex">
-                    <a
-                      href="/"
-                      className="blog-img mr-4"
-                      style={{
-                        backgroundImage:
-                          "url(http://d2luxury.me/../images/image_2.jpg)",
-                      }}
-                    >
+                    <a href="/" className="blog-img mr-4 block-20 blog-img-2">
                       &nbsp;
                     </a>
                     <div className="text">
@@ -300,14 +317,7 @@ class RoomDetails extends Component {
                     </div>
                   </div>
                   <div className="block-21 mb-4 d-flex">
-                    <a
-                      href="/"
-                      className="blog-img mr-4"
-                      style={{
-                        backgroundImage:
-                          "url(http://d2luxury.me/../images/image_3.jpg)",
-                      }}
-                    >
+                    <a href="/" className="blog-img mr-4 block-20 blog-img-3">
                       &nbsp;
                     </a>
                     <div className="text">
@@ -389,7 +399,7 @@ class RoomDetails extends Component {
 }
 
 RoomDetails.propTypes = {
-  // room: PropTypes.object.isRequired,
+  room: PropTypes.object.isRequired,
   getRoom: PropTypes.func.isRequired,
   // updateContact: PropTypes.func.isRequired,
 };
@@ -398,8 +408,4 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
 });
 
-// const mapActionsToProps = {
-//   getRoom,
-//   loginUser,
-// };
 export default connect(mapStateToProps, { getRoom })(RoomDetails);

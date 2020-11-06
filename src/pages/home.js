@@ -2,8 +2,8 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 16:35:39
- * @modify date 2020-11-02 00:21:31
- * @desc [Home page]
+ * @modify date 2020-11-06 14:08:02
+ * @desc [Home page,  included components - HeaderImage, Rooms , Blogs ]
  */
 import React from "react";
 import { HeaderImage } from "../components/HeaderImage";
@@ -205,7 +205,7 @@ export const Home = () => {
         <div className="container">
           <div className="row justify-content-center mb-5 pb-3">
             <div className="col-md-7 heading-section text-center">
-              <span className="htl-text">Welcome to D2Luxury Hotel</span>
+              <span className="htl-title-text">Welcome to D2Luxury Hotel</span>
               <h5 className="mb-4">A New Vision of Luxury Hotel</h5>
             </div>
           </div>

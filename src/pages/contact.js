@@ -1,3 +1,10 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-11-06 13:15:57
+ * @modify date 2020-11-06 22:46:15
+ * @desc [Contact page]
+ */
 import React, { Component } from "react";
 
 import emailjs from "emailjs-com";
@@ -20,10 +27,39 @@ var schema = Joi.object().keys({
   name: Joi.string()
     .required()
     .label("Name")
-    .error((errors) => "Name is required"),
-  email: Joi.string().required().email().min(5).label("Email"),
-  subject: Joi.string().required(),
-  message: Joi.string().required(),
+    .error((errors) => {
+      this.setState({
+        errors: { name: "Room type cannot be empty" },
+      });
+      return {
+        message: "Your name is required",
+      };
+    }),
+  email: Joi.string()
+    .required()
+    .email()
+    .min(5)
+    .label("Email")
+    .error((errors) => {
+      return {
+        message: "Email  is required and should be in the proper format ",
+      };
+    }),
+  subject: Joi.string()
+    .required()
+    .error((errors) => {
+      return {
+        message: "Subject is required ",
+      };
+    }),
+  message: Joi.string()
+    .required()
+    .min(20)
+    .error((errors) => {
+      return {
+        message: "Message is required with min. 20 characters",
+      };
+    }),
 });
 
 class Contact extends Component {
@@ -38,6 +74,33 @@ class Contact extends Component {
     };
   }
 
+  // form validation on submit
+  handleSubmit = (e) => {
+    alert(this.state.errors.name);
+    e.preventDefault();
+    this.sendEmail(e);
+  };
+
+  sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "gmail",
+        "template_bycrbsg",
+        e.target,
+        "user_JoXMOLyUnnZS9K58BUWGB"
+      )
+      .then(
+        (result) => {
+          console.log("success");
+          //  window.location.reload(); //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   render() {
     let {
       user: { name, email, subject, message },
@@ -45,38 +108,6 @@ class Contact extends Component {
       changeHandler,
       validateHandler,
     } = this.props;
-
-    const handleSubmit = () => {
-      alert(name);
-      if (Object.keys(this.props.user).length <= 0) {
-        //this.props.errors='Data Missing';
-        errors = "All the fields are required";
-        console.log(this.props.errors);
-        return false;
-      }
-    };
-
-    const sendEmail = (e) => {
-      e.preventDefault(); //This is important, i'm not sure why, but the email won't send without it
-      if (handleSubmit()) {
-        emailjs
-          .sendForm(
-            "gmail",
-            "template_bycrbsg",
-            e.target
-            // "user_JoXMOLyUnnZS9K58BUWGB"
-          )
-          .then(
-            (result) => {
-              window.location.reload(); //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior)
-            },
-            (error) => {
-              console.log(error.text);
-            }
-          );
-      }
-    };
-
     return (
       <section className="bg-light mt-0 mb-0">
         <HeaderImage />
@@ -84,8 +115,8 @@ class Contact extends Component {
         <div className="container">
           <div className="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
             <div className="col-md-9  text-center d-flex align-items-end justify-content-center">
-              <div className="text">
-                <h1 className="mb-4 bread">Contact us</h1>
+              <div className="text ">
+                <h1 className="mt-5 bread">Contact us</h1>
               </div>
             </div>
           </div>
@@ -133,29 +164,34 @@ class Contact extends Component {
               <div className="col-md-6 order-md-last d-flex">
                 <form
                   className="bg-white p-5 contact-form"
-                  onSubmit={(e) => sendEmail(e)}
+                  onSubmit={this.handleSubmit}
                 >
                   <div className="form-group">
                     <input
                       type="text"
+                      name={name}
                       value={name}
                       className="form-control"
                       placeholder="Your Name"
                       onChange={changeHandler("name")}
                       onBlur={validateHandler("name")}
                     />
-                    <span style={{ color: "red" }}> {errors.name} </span>
+                    <span style={{ color: "red" }}>
+                      {errors.name ? errors.name : this.state.errors.name}{" "}
+                    </span>
                   </div>
                   <div className="form-group">
                     <input
                       value={email}
-                      type="text"
+                      type="mail"
                       className="form-control"
                       placeholder="Your Email"
                       onChange={changeHandler("email")}
                       onBlur={validateHandler("email")}
                     />
-                    <span style={{ color: "red" }}>{errors.email} </span>
+                    <span style={{ color: "red" }}>
+                      {errors.email ? errors.email : this.state.errors.email}{" "}
+                    </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -166,7 +202,11 @@ class Contact extends Component {
                       onChange={changeHandler("subject")}
                       onBlur={validateHandler("subject")}
                     />
-                    <span style={{ color: "red" }}> {errors.subject} </span>
+                    <span style={{ color: "red" }}>
+                      {errors.subject
+                        ? errors.subject
+                        : this.state.errors.subject}{" "}
+                    </span>
                   </div>
                   <div className="form-group">
                     <textarea
@@ -178,7 +218,11 @@ class Contact extends Component {
                       onChange={changeHandler("message")}
                       onBlur={validateHandler("message")}
                     ></textarea>
-                    <span style={{ color: "red" }}> {errors.message} </span>
+                    <span style={{ color: "red" }}>
+                      {errors.message
+                        ? errors.message
+                        : this.state.errors.message}{" "}
+                    </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -208,7 +252,7 @@ class Contact extends Component {
     );
   }
 }
-
+// validation option for JOI
 var validationOptions = {
   joiSchema: schema,
   only: "user",

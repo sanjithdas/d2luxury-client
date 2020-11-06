@@ -2,14 +2,17 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:31:08
- * @modify date 2020-11-02 12:41:04
- * @desc [App Component - Main Component]
+ * @modify date 2020-11-06 22:54:54
+ * @desc [App Component - Main Component , which define all the routes]
  */
 /**
  * import react and installed modules.
  */
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+// import provider - will mak available to the  global state to all the components given in the provider tag.
+import { Provider } from "react-redux";
 /**
  * import all styles
  */
@@ -20,9 +23,10 @@ import "./css/ionicons.min.css";
 import "./css/icomoon.css";
 import "./css/aos.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import axios
 import axios from "axios";
-import { Provider } from "react-redux";
+
+// import store - acces the global store (state) object
 import store from "./store";
 
 // Font awestuff
@@ -59,21 +63,23 @@ import Footer from "../src/components/FooterC";
 import AuthRoute from "./util/AuthRoute";
 import jwtDecode from "jwt-decode";
 import Show from "./components/admin/rooms/Show";
+import NotFound from "./pages/notfound";
 
-//let authenticated;
+/**
+ * checking the user is logged in (token based checking)
+ * if not login redirect to login page, else set the user
+ * authenticated and get the user data.
+ *  */
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
     window.location.href = "/login";
-    // this.props.push("/login");
-    //authenticated = false;
   } else {
     store.dispatch({ type: "SET_AUTHENTICATED" });
     axios.defaults.headers.common["Authorization"] = token;
     store.dispatch(getUserData());
-    //authenticated = true;
   }
 }
 function App() {
@@ -105,6 +111,7 @@ function App() {
           <Route path="/admin/room/edit/:roomno" component={Edit} />
 
           <Route path="/room/details/:roomno" component={RoomDetails} />
+          <Route component={NotFound} />
         </Switch>
 
         <Footer />

@@ -1,10 +1,11 @@
 :root {
   --backgroundcolor: #fbf9cf;
-  --text-color:#050f13;
+  --text-color: #050f13;
+  --title-color: #3f4618;
 }
 
 .item-header-img1 {
-  background-image: url(../images/bg_1up.jpg);
+  background-image: url(../images/bg_3.jpg);
 }
 
 .item-header-img2 {
@@ -50,7 +51,16 @@
   font-weight: bold;
   text-shadow: 0 1px 0 #ccb210, 0 4px 0 #ccb821, 0 5px 0 #bba00a, 0 6px 0 #3c326e, 0 7px 0 #aa2816, 0 8px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
   font-size: 35px;
-  font-family: 'Meie Script', cursive;
+  font-family: "Meie Script", cursive;
+}
+
+.htl-title-text {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #ccb210, 0 4px 0 #ccb821, 0 5px 0 #bba00a, 0 6px 0 #3c326e, 0 7px 0 #aa2816, 0 8px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(10, 0, 0, 0.1), 0 1px 3px rgba(10, 0, 0, 0.3), 0 3px 5px rgba(10, 0, 0, 0.2), 0 5px 10px rgba(10, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(134, 3, 3, 0.15);
+  font-size: 35px;
+  font-family: "Meie Script", cursive;
 }
 
 a {

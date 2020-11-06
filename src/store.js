@@ -1,3 +1,11 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-11-06 15:05:00
+ * @modify date 2020-11-06 15:06:32
+ * @desc [create the global store object]
+ */
+
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk"; //async actions

@@ -2,56 +2,52 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-02 00:10:58
+ * @modify date 2020-11-06 13:09:34
  * @desc [Login Component]
  */
-//react 
+//react
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // styles
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
- // user action
+// user action
 import { loginUser } from "../actions/userActions";
 //props
 import PropTypes from "prop-types";
 
-
 class Login extends Component {
+  // initialise the local state
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
       errors: {},
-      
     };
   }
 
+  // update the UI - loading status
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors });
   }
 
+  // form submit
   onHandleSubmit = (e) => {
     e.preventDefault();
-    // this.setState({
-    //   loading: true,
-    // });
     const userData = {
       email: this.state.email,
       password: this.state.password,
     };
-    //this.props.loginUser(userData, this.props.history)
-    this.props.loginUser(userData, this.props.history);
-    
-  };
 
+    this.props.loginUser(userData, this.props.history);
+  };
+  // updating the current state
   onHandleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    //console.log("onchange Auth");
   };
 
   render() {
@@ -70,7 +66,6 @@ class Login extends Component {
                 <h1 className="text-center pb-4, pt-3">
                   {/* <FontAwesomeIcon icon="lock" className="text-primary" />{" "} */}
                   <span className="text-black">Login</span>
-                 
                 </h1>
 
                 <Form onSubmit={this.onHandleSubmit}>
@@ -124,6 +119,7 @@ class Login extends Component {
   }
 }
 
+// declare the prop types
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
@@ -131,14 +127,17 @@ Login.propTypes = {
   authenticated: PropTypes.bool.isRequired,
 };
 
+// map state to props
 const mapStateToProps = (state) => ({
   user: state.user,
   UI: state.UI,
   authenticated: state.user.authenticated,
 });
 
+// map action to props
 const mapActionsToProps = {
   loginUser,
 };
 
+// connect to the globas state and export
 export default connect(mapStateToProps, mapActionsToProps)(Login);

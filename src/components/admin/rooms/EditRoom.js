@@ -2,15 +2,22 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-05 18:12:37
- * @desc [Create New Room - admin only]
+ * @modify date 2020-11-06 15:13:24
+ * @desc [Update Room  - User can update their own room details]
  */
+// react stuff
 import { connect } from "react-redux";
 import React, { Component } from "react";
+
+// bootstrap/ font
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
+
+// proptypes
 import PropTypes from "prop-types";
+
+// custom component
 import {
   addRoom,
   updateRoom,
@@ -19,6 +26,7 @@ import {
 } from "../../../actions/roomActions";
 
 class EditRoom extends Component {
+  // difine the componet state.
   state = {
     roomno: "",
     roomType: "",
@@ -29,10 +37,8 @@ class EditRoom extends Component {
     errors: {},
     userId: "",
   };
-
+  // once the state receive new props
   componentWillReceiveProps(nextProps, nextState) {
-    // userId = nextProps.room[0].userId;
-
     const {
       roomno,
       description,
@@ -44,8 +50,6 @@ class EditRoom extends Component {
       userId,
     } = nextProps.room[0];
 
-    console.log(userId);
-
     this.setState({
       roomno,
       description,
@@ -56,21 +60,25 @@ class EditRoom extends Component {
       bedType,
       userId,
     });
-
-    console.log(roomType);
   }
+  // life cycle method
   componentWillMount() {
     const { roomno } = this.props.match.params;
     this.props.getRoom(roomno);
   }
-
+  // life cycle method
+  componentDidMount() {
+    const { roomno } = this.props.match.params;
+    this.props.getRoom(roomno);
+  }
+  // on change - setting the component state
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
 
-  // on image select
+  // on image select - image upload part
   onImageChange = (e) => {
     let file = e.target.files[0];
 
@@ -134,11 +142,12 @@ class EditRoom extends Component {
       return;
     }
 
+    // formData to send the image content through axios to the server
+
     formData.append("image", this.state.imageUrl);
-    console.log(this.props.room.roomId);
     formData.append("docId", this.props.room[0].userId);
 
-    // create a new room object
+    // create a new room (updated room) object
     const updRoom = {
       roomno,
       roomType,
@@ -149,24 +158,23 @@ class EditRoom extends Component {
       userId,
     };
 
-    this.props.updateRoom(updRoom);
-    this.props.addRoomImage(formData, this.props.room[0].userId);
+    // get the room details to be edited.
     this.props.getRoom(roomno);
+
+    // the global function call to update the room details.
+    this.props.updateRoom(updRoom);
+
+    // upload image functions
+    this.props.addRoomImage(formData, this.props.room[0].userId);
+
+    // redirect to the user room listing page.
     this.props.history.push("/admin/room/show");
-    // this.props.history.push("admin/room/show");
   };
   // on change form set the component state
 
   render() {
-    const {
-      roomno,
-      roomType,
-      occupants,
-      bedType,
-      roomRate,
-      description,
-    } = this.state;
-    // console.log(this.props.room.roomno);
+    const { roomType, occupants, bedType, roomRate, description } = this.state;
+    console.log(this.props.room.roomno);
     return (
       <div>
         <Row className="mt-5 mb-5">
@@ -180,7 +188,7 @@ class EditRoom extends Component {
                 </h1>
 
                 <Form onSubmit={this.onSubmit} enctype="multipart/form-data">
-                  <Form.Group controlId="roomno">
+                  {/* <Form.Group controlId="roomno">
                     <Form.Label>Room number</Form.Label>
                     <Form.Control
                       type="text"
@@ -197,7 +205,7 @@ class EditRoom extends Component {
                         {this.state.errors.roomno}
                       </div>
                     )}
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Form.Group controlId="roomType">
                     <Form.Label>Room Type</Form.Label>
@@ -321,6 +329,8 @@ class EditRoom extends Component {
   }
 }
 
+// Prop types definition
+
 EditRoom.propTypes = {
   getRoom: PropTypes.func.isRequired,
   addRoom: PropTypes.func.isRequired,
@@ -328,12 +338,14 @@ EditRoom.propTypes = {
   addRoomImage: PropTypes.func.isRequired,
 };
 
+// mapping global state to props
 const mapStateToProps = (state) => ({
   user: state.user,
   authenticated: state.user.authenticated,
   room: state.room.room,
 });
 
+// mapping action
 const mapActionsToProps = {
   addRoom,
   updateRoom,
@@ -341,4 +353,5 @@ const mapActionsToProps = {
   addRoomImage,
 };
 
+// connect to the global state and exporting.
 export default connect(mapStateToProps, mapActionsToProps)(EditRoom);

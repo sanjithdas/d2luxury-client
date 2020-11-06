@@ -1,3 +1,10 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-11-06 13:03:21
+ * @modify date 2020-11-06 13:03:37
+ * @desc [Google Map Component Integration]
+ */
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper } from "google-maps-react";
 

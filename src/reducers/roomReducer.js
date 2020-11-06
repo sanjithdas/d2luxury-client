@@ -2,10 +2,11 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 20:28:55
- * @modify date 2020-11-02 14:47:36
- * @desc [Reducer - update the state]
+ * @modify date 2020-11-06 14:48:29
+ * @desc [Reducer - update the state of the room]
  */
 
+// import the action types
 import {
   GET_ROOMS,
   GET_ROOM,
@@ -16,12 +17,14 @@ import {
   GET_MY_ROOM,
 } from "../actions/types";
 
+// setting initial state (global)
 const initialState = {
   rooms: [],
   room: {},
   errors: {},
 };
 
+// check the action type and update the state
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_ROOMS:
@@ -32,7 +35,7 @@ export default function (state = initialState, action) {
     case GET_ROOM:
       return {
         ...state,
-        room: Object.assign(action.payload),
+        room: action.payload,
       };
     case GET_MY_ROOM:
       return {

@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-05 18:36:19
+ * @modify date 2020-11-06 12:30:02
  * @desc [Create New Room - Registered user only]
  */
 //react Stuff
@@ -25,6 +25,8 @@ import PropTypes from "prop-types";
 import { addRoom, addRoomImage } from "../../../actions/roomActions";
 
 class Create extends Component {
+  // constructor , difine the componet state.
+
   constructor() {
     super();
     this.state = {
@@ -55,12 +57,7 @@ class Create extends Component {
     const formData = new FormData();
 
     e.preventDefault();
-    if (this.state.roomno === "") {
-      this.setState({
-        errors: { roomno: "Room no. cannot be empty" },
-      });
-      return;
-    }
+
     if (this.state.roomType === "") {
       this.setState({
         errors: { roomType: "Room type cannot be empty" },
@@ -103,12 +100,7 @@ class Create extends Component {
     };
     console.log(formData.entries());
     this.props.addRoom(newRoom);
-    // this.props.addRoomImage(formData);
     this.props.history.push("admin/../show");
-
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
   };
 
   render() {
@@ -129,7 +121,7 @@ class Create extends Component {
                   enctype="multipart/form-data"
                   method="post"
                 >
-                  <Form.Group controlId="roomno">
+                  {/* <Form.Group controlId="roomno">
                     <Form.Label>Room number</Form.Label>
                     <Form.Control
                       type="roomno"
@@ -146,7 +138,7 @@ class Create extends Component {
                         {this.state.errors.roomno}
                       </div>
                     )}
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Form.Group controlId="roomType">
                     <Form.Label>Room Type</Form.Label>
@@ -243,24 +235,6 @@ class Create extends Component {
                       </div>
                     )}
                   </Form.Group>
-
-                  {/* <Form.Group controlId="imageUrl">
-                    <Form.Label>Upload Photo</Form.Label>
-                    <Form.File
-                      name="imageUrl"
-                      onChange={this.onImageChange}
-                    ></Form.File>
-                  </Form.Group> */}
-
-                  {/* <Form.Group controlId="imageUrl">
-                    <input
-                      type="file"
-                      name="imageUrl"
-                      onChange={this.onImageChange}
-                      accept="image/*"
-                    />
-                  </Form.Group> */}
-
                   <Button type="submit" variant="black" className="btn-block">
                     Create Room
                   </Button>
@@ -279,20 +253,25 @@ class Create extends Component {
   }
 }
 
+// Proptypes defined
+
 Create.propTypes = {
   addRoom: PropTypes.func.isRequired,
   addRoomImage: PropTypes.func.isRequired,
 };
 
+// mapping state to props
 const mapStateToProps = (state) => ({
   user: state.user,
   authenticated: state.user.authenticated,
   room: state.room.room,
 });
 
+// action to props
 const mapActionsToProps = {
   addRoom,
   addRoomImage,
 };
 
+// connect to the global state.
 export default connect(mapStateToProps, mapActionsToProps)(Create);

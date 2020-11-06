@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-30 21:36:21
- * @modify date 2020-10-30 22:06:02
+ * @modify date 2020-11-06 13:11:16
  * @desc [Logout component]
  */
 
@@ -15,9 +15,10 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/userActions";
 
 class Logout extends Component {
+  // logout when the component mounted
   componentDidMount() {
     this.props.logoutUser();
-    console.log('successfully loggedout')
+    console.log("successfully loggedout");
     this.props.history.push("/login");
   }
   render() {
@@ -25,12 +26,15 @@ class Logout extends Component {
   }
 }
 
+// map state to props
 const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapActionsToProps ={
+// map action to props
+const mapActionsToProps = {
   logoutUser,
 };
 
-export default connect(mapStateToProps,mapActionsToProps)(Logout);
+// connect the global state and export
+export default connect(mapStateToProps, mapActionsToProps)(Logout);

@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-01 23:41:40
+ * @modify date 2020-11-06 13:01:57
  * @desc [Footer component]
  */
 
@@ -22,7 +22,7 @@ const Footer = () => {
                   countries Vokalia and Consonantia, there live the blind texts.
                 </p>
                 <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                   <li className="">
+                  <li className="">
                     <a href="/">
                       <span className="icon-twitter"></span>
                     </a>
@@ -36,7 +36,7 @@ const Footer = () => {
                     <a href="/">
                       <span className="icon-instagram"></span>
                     </a>
-                  </li> 
+                  </li>
                 </ul>
               </div>
             </div>
@@ -77,12 +77,12 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="/" className="py-2 d-block">
+                    <a href="/about" className="py-2 d-block">
                       About Us
                     </a>
                   </li>
                   <li>
-                    <a href="/" className="py-2 d-block">
+                    <a href="/contact" className="py-2 d-block">
                       Contact Us
                     </a>
                   </li>
@@ -108,7 +108,7 @@ const Footer = () => {
                     <li>
                       <a href="/">
                         <span className="icon icon-phone"></span>
-                        <span className="text">+2 392 3929 210</span>
+                        <span className="text">+2 112 23 210</span>
                       </a>
                     </li>
                     <li>
@@ -122,7 +122,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-         
         </div>
       </footer>
     </section>

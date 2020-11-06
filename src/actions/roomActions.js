@@ -2,8 +2,8 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2020-11-05 16:58:30
- * @desc [Actions - dipatch actions here , calls the appropriate actions, contact the server]
+ * @modify date 2020-11-06 12:38:36
+ * @desc [Actions - dispatch actions here , calls the appropriate actions, contact the server]
  */
 import {
   GET_ROOMS,
@@ -34,6 +34,7 @@ export const getRooms = () => async (dispatch) => {
  */
 
 export const getRoom = (roomno) => async (dispatch) => {
+  console.log(roomno);
   const res = await axios.get(
     `http://localhost:5000/d2luxuryredux/us-central1/api/room/${roomno}`
   );
@@ -42,7 +43,7 @@ export const getRoom = (roomno) => async (dispatch) => {
     type: GET_ROOM,
     payload: res.data,
   });
-  //console.log(res.data);
+  // console.log(res.data);
 };
 
 /**
@@ -59,6 +60,7 @@ export const getAllMyRooms = (userId) => async (dispatch) => {
     type: GET_MY_ROOM,
     payload: res.data,
   });
+  console.log(res.data);
 };
 
 /**
@@ -101,26 +103,18 @@ export const addRoom = (room) => async (dispatch) => {
   // history.push("/admin/room/show");
 };
 
+// upload image
 export const addRoomImage = (roomImage, userId) => async (dispatch) => {
-  console.log(roomImage);
-  console.log(userId);
-  for (var pair of roomImage.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
+  // for (var pair of roomImage.entries()) {
+  //   console.log(pair[0] + ", " + pair[1]);
+  // }
   const res = await axios({
     method: "post",
     url: `http://localhost:5000/d2luxuryredux/us-central1/api/room/image/${userId}`,
     data: roomImage,
     headers: { "Content-Type": "multipart/form-data" },
   });
-
   console.log(res);
-
-  // dispatch({
-  //   type: ADD_ROOM,
-  //   payload: res.data,
-  // });
-  // history.push("/admin/room/show");
 };
 
 /**

@@ -2,20 +2,18 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-02 01:07:59
- * @desc [Login Component]
+ * @modify date 2020-11-06 14:40:17
+ * @desc [Signup Component]
  */
 import React, { Component, useState } from "react";
-
-import { Row, Col, Form, Card, Button } from "react-bootstrap";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
+
+import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import PropTypes from "prop-types";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 class Signup extends Component {
   constructor() {
@@ -96,7 +94,7 @@ class Signup extends Component {
                     <span style={{ color: "red" }}>{errors.email} </span>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>password</Form.Label>
+                    <Form.Label>password wewr</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter your password"

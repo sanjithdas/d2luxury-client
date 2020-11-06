@@ -2,37 +2,38 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-03 13:28:05
- * @modify date 2020-11-05 18:14:25
- * @desc [Get the rooms belongs to the logged in users]
+ * @modify date 2020-11-06 12:44:14
+ * @desc [Get all the rooms belongs to the logged in users]
  */
+// import react stuff
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+// prop types
+import PropTypes from "prop-types";
+
+// jwt token decode import
 import jwtDecode from "jwt-decode";
 
-import { connect } from "react-redux";
+// import
 import { deleteRoom } from "../../../actions/roomActions";
 import { getAllMyRooms } from "../../../actions/roomActions";
 
+// font awesome icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-class MyRoom extends Component {
-  onShowClick = (e) => {
-    console.log("OnShowClick");
-    this.setState({ showRoomInfo: !this.state.showRoomInfo });
-  };
 
+class MyRoom extends Component {
+  // delete a room on clicking the delete
   delClick = (id) => {
-    console.log("delete: " + id);
     this.props.deleteRoom(id);
     const token = localStorage.FBIdToken;
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log(decodedToken);
       this.props.getAllMyRooms(decodedToken.user_id);
     }
   };
-
+  // listing all the rooms belongs to the user
   componentDidMount() {
     const token = localStorage.FBIdToken;
     if (token) {
@@ -40,11 +41,13 @@ class MyRoom extends Component {
       console.log(decodedToken);
       this.props.getAllMyRooms(decodedToken.user_id);
     }
+    this.setState({
+      roomRate: this.props.room.roomRate,
+    });
   }
 
   render() {
-    // pull the variables from the props (as this is passed from the  component)
-
+    console.log(this.props.room.userId);
     const { roomno, imageUrl, roomType, roomRate, userId } = this.props.room;
 
     return (
@@ -133,19 +136,17 @@ class MyRoom extends Component {
   }
 }
 
+// prop types declaration
 MyRoom.propTypes = {
   room: PropTypes.object.isRequired,
-  // deleteRoom : PropTypes.func.isRequired
+  deleteRoom: PropTypes.func.isRequired,
 };
-const mapStateToProps = (state) => ({
-  rooms: state.room.rooms,
-  authenticated: state.user.authenticated,
-});
+
+// map action to props.
 const mapActionsToProps = {
   deleteRoom,
   getAllMyRooms,
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(MyRoom);
-
-//export default Room
+// connect to the global state
+export default connect(null, mapActionsToProps)(MyRoom);

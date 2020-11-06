@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-02 00:06:52
+ * @modify date 2020-11-06 11:23:06
  * @desc [About page]
  */
 
@@ -16,7 +16,7 @@ const About = () => {
   return (
     <section className="bg-light mt-0 mb-0">
       <HeaderImage />
-      <section className="ftco-section ftc-no-pb ftc-no-pt">
+      <section className="ftco-section mt-3 ftc-no-pb ftc-no-pt">
         <div className="container">
           <div className="row">
             <div className="col-md-5 p-md-5 img img-2 img-3 d-flex justify-content-center align-items-center item-header-img1">
@@ -27,8 +27,8 @@ const About = () => {
             <div className="col-md-7 py-5 wrap-about pb-md-5">
               <div className="heading-section heading-section-wo-line pt-md-5 mb-5">
                 <div className="ml-md-0">
-                  <span className="subheading">Welcome to D2Luxury Hotel</span>
-                  <h2 className="mb-4">Welcome To Our Hotel</h2>
+                  <span className="htl-title-text">Welcome To D2Luxury</span>
+                  <h6 className="mb-4">Welcome To Our Hotel</h6>
                 </div>
               </div>
               <div className="pb-md-5">
@@ -82,7 +82,9 @@ const About = () => {
         <div className="container">
           <div className="row justify-content-center mb-5 pb-3">
             <div className="col-md-7 heading-section text-center">
-              <span className="h3">Welcome to D2Luxury Hotel</span>
+              <span>
+                <h4>Welcome to D2Luxury Hotel</h4>
+              </span>
               <h5 className="mb-2">A New Vision of Luxury Hotel</h5>
             </div>
           </div>

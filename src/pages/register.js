@@ -2,35 +2,36 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-01 23:27:48
- * @desc [Login Component]
+ * @modify date 2020-11-06 14:14:35
+ * @desc [User Register Component]
  */
-import React, { Component } from "react";
-
-import { Row, Col, Form, Card, Button } from "react-bootstrap";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 //redux stuff
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import {signupUser } from '../actions/userActions';
+// prop types
+import PropTypes from "prop-types";
 
+// bootstrap , fontawesome
+import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// custom components
+import { signupUser } from "../actions/userActions";
 
 class Register extends Component {
+  // constructor initialise  the component state
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
       confirmPassword: "",
-     
       errors: {},
     };
   }
-
+  // for submit action
   onHandleSubmit = (e) => {
     e.preventDefault();
     this.setState({
@@ -41,26 +42,25 @@ class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     };
-    this.props.signupUser(newUserData , this.props.history)
-    // console.log("Submitted Auth");
+    // sign up method to let the user to sign in
+    this.props.signupUser(newUserData, this.props.history);
   };
-// setting errors
-  componentWillReceiveProps(nextProps){
-    if (nextProps.UI.errors)
-     this.setState({ errors: nextProps.UI.errors})
+  // setting errors
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) this.setState({ errors: nextProps.UI.errors });
   }
 
-  
+  // on change , update the component state
   onHandleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    //console.log("onchange Auth");
   };
 
   render() {
-    
-    const { UI: {loading} } = this.props
+    const {
+      UI: { loading },
+    } = this.props;
     const { errors } = this.state;
 
     return (
@@ -145,18 +145,17 @@ class Register extends Component {
   }
 }
 
+// Prop types defenition
 Register.propTypes = {
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
-  signupUser: PropTypes.func.isRequired
-  
-}
-
+  signupUser: PropTypes.func.isRequired,
+};
+// global state to props
 const mapStateToProps = (state) => ({
   user: state.user,
-  UI: state.UI
-})
+  UI: state.UI,
+});
 
-
-
-export default connect(mapStateToProps, {signupUser})(Register);
+// connect to the global state and export
+export default connect(mapStateToProps, { signupUser })(Register);

@@ -1,3 +1,10 @@
+/**
+ * @author [Sanjith]
+ * @email [sanjith.das@gmail.com]
+ * @create date 2020-11-06 12:15:37
+ * @modify date 2020-11-06 12:24:38
+ * @desc [User Action - login , Logout , SIgnup , setAuthorizationHeader]
+ */
 import {
   SET_USER,
   SET_ERRORS,
@@ -16,7 +23,6 @@ export const loginUser = (userData, history) => (dispatch) => {
     .post("http://localhost:5000/d2luxuryredux/us-central1/api/login", userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      // dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       dispatch({
         type: SET_AUTHENTICATED,
@@ -31,7 +37,6 @@ export const loginUser = (userData, history) => (dispatch) => {
         payload: err.response.data,
       });
     });
-  // console.log("Submitted Auth");
 };
 
 // user signup
@@ -46,18 +51,15 @@ export const signupUser = (newUserData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       // dispatch(getUserData());
       // dispatch({ type: CLEAR_ERRORS });
-
       history.push("/admin/room/create");
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: SET_ERRORS,
-        // errors:err.response.data,
         payload: err.response.data,
       });
     });
-  // console.log("Submitted Auth");
 };
 
 // logout user
@@ -65,27 +67,13 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("FBIdToken");
   delete axios.defaults.headers.common["Authorization"];
   dispatch({ type: SET_UNAUTHENTICATED });
+};
 
-  // console.log(userData);
-  //   axios
-  //     .post(
-  //       "http://localhost:5000/d2luxuryredux/us-central1/api/signup",
-  //       userData
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-  //       this.setState({
-  //         loading: false,
-  //       });
-  //       this.props.history.push("/");
-  //     })
-  //     .catch((err) => {
-  //       this.setState({
-  //         errors: err.response.data,
-  //         loading: false,
-  //       });
-  //     });
+// set authorisation token in the local storage
+const setAuthorizationHeader = (token) => {
+  const FBIdToken = `Bearer ${token}`;
+  localStorage.setItem("FBIdToken", FBIdToken);
+  axios.defaults.headers.common["Authorization"] = FBIdToken;
 };
 
 export const getUserData = () => (dispatch) => {
@@ -98,10 +86,4 @@ export const getUserData = () => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
-};
-
-const setAuthorizationHeader = (token) => {
-  const FBIdToken = `Bearer ${token}`;
-  localStorage.setItem("FBIdToken", FBIdToken);
-  axios.defaults.headers.common["Authorization"] = FBIdToken;
 };
