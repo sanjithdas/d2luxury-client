@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-03 13:28:05
- * @modify date 2020-11-06 12:44:14
+ * @modify date 2020-11-06 23:29:43
  * @desc [Get all the rooms belongs to the logged in users]
  */
 // import react stuff
@@ -26,7 +26,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class MyRoom extends Component {
   // delete a room on clicking the delete
   delClick = (id) => {
-    this.props.deleteRoom(id);
+    let confirmFlag = window.confirm("Do you want to delete this record?");
+    console.log(confirmFlag);
+    if (confirmFlag) this.props.deleteRoom(id);
     const token = localStorage.FBIdToken;
     if (token) {
       const decodedToken = jwtDecode(token);

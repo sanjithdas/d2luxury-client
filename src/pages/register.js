@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-06 14:14:35
+ * @modify date 2020-11-09 22:59:11
  * @desc [User Register Component]
  */
 //redux stuff
@@ -68,12 +68,13 @@ class Register extends Component {
         <Row className="mt-5 mb-5">
           <Col md={6} className="mx-auto">
             <Card>
-              <Card.Body>
-                <h1 className="text-center pb-4, pt-3">
-                  <FontAwesomeIcon icon="lock" className="text-primary" />{" "}
-                  <span className="text-black">Register</span>
+              <Card.Header>
+                <h1 className="pb-4, pt-3">
+                  <FontAwesomeIcon icon="loc" className="text-success" />{" "}
+                  <span className="text-success">Register</span>
                 </h1>
-
+              </Card.Header>
+              <Card.Body>
                 <Form onSubmit={this.onHandleSubmit}>
                   <Form.Group>
                     <Form.Label>Email</Form.Label>
@@ -125,7 +126,11 @@ class Register extends Component {
                     </span>
                   )}
 
-                  <Button type="submit" variant="black" className="btn-block">
+                  <Button
+                    type="submit"
+                    variant="black"
+                    className="btn btn-block btn-success"
+                  >
                     Signup
                     {loading && <div class="spinner-grow text-warning"></div>}
                   </Button>

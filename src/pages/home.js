@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 16:35:39
- * @modify date 2020-11-06 14:08:02
+ * @modify date 2020-11-09 23:26:38
  * @desc [Home page,  included components - HeaderImage, Rooms , Blogs ]
  */
 import React from "react";
@@ -16,7 +16,7 @@ export const Home = () => {
       <HeaderImage />
       <section className="ftco-booking ftco-section ftco-no-pt ftco-no-pb">
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12 pr-1 aside-stretch">
               <form action="/" className="booking-form">
                 <div className="row">
@@ -140,11 +140,19 @@ export const Home = () => {
                 </div>
               </form>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
       <section className="mt-3 ftco-section ftco-no-pt ftco-no-pb ftco-services-wrap">
+      <div className="container">
+          <div className="row justify-content-center mb-5 pb-3">
+            <div className="col-md-7 heading-section text-center">
+              <span className="htl-title-text">Welcome to D2Luxury </span>
+              <h5 className="mb-4 htl-sub-title">A New Vision of Luxury Hotel</h5>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row no-gutters">
             <div className="col-md-3">
@@ -201,15 +209,10 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <section className="mt-5">
-        <div className="container">
-          <div className="row justify-content-center mb-5 pb-3">
-            <div className="col-md-7 heading-section text-center">
-              <span className="htl-title-text">Welcome to D2Luxury Hotel</span>
-              <h5 className="mb-4">A New Vision of Luxury Hotel</h5>
-            </div>
-          </div>
-        </div>
+      
+      <Rooms />
+      <section className="mt-2 mb-4">
+        
         <div className="row d-flex">
           <div className="col-md pr-md-1 d-flex align-self-stretch">
             <div className="media block-6 services py-4 d-block text-center">
@@ -273,7 +276,6 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <Rooms />
       <Blogs />
     </div>
   );

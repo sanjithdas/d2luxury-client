@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-06 13:15:57
- * @modify date 2020-11-06 22:46:15
+ * @modify date 2020-11-09 21:59:58
  * @desc [Contact page]
  */
 import React, { Component } from "react";
@@ -28,9 +28,6 @@ var schema = Joi.object().keys({
     .required()
     .label("Name")
     .error((errors) => {
-      this.setState({
-        errors: { name: "Room type cannot be empty" },
-      });
       return {
         message: "Your name is required",
       };
@@ -71,12 +68,14 @@ class Contact extends Component {
       subject: "",
       message: "",
       errors: "",
+      text: "",
     };
   }
 
   // form validation on submit
   handleSubmit = (e) => {
-    alert(this.state.errors.name);
+    // alert(this.state.errors.name);
+    alert(this);
     e.preventDefault();
     this.sendEmail(e);
   };
@@ -116,16 +115,16 @@ class Contact extends Component {
           <div className="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
             <div className="col-md-9  text-center d-flex align-items-end justify-content-center">
               <div className="text ">
-                <h1 className="mt-5 bread">Contact us</h1>
+                <h1 className="mt-5 bread text-success">Contact us</h1>
               </div>
             </div>
           </div>
         </div>
-        <section className="ftco-section contact-section bg-light">
+        <section className="bg-light">
           <div className="container">
             <div className="row d-flex mb-5 contact-info">
               <div className="col-md-12 mb-4">
-                <h2 className="h3">Contact Information</h2>
+                <h2 className="h3 text-success">Contact Information</h2>
               </div>
               <div className="w-100"></div>
               <div className="col-md-3 d-flex">
@@ -138,8 +137,10 @@ class Contact extends Component {
               <div className="col-md-3 d-flex">
                 <div className="info bg-white p-4">
                   <p>
-                    <span>Phone:</span>{" "}
-                    <a href="tel://1234567920">+ 1235 2355 98</a>
+                    <span class="nowrap">Phone:</span>{" "}
+                    <a class="nowrap" href="tel://1234567920">
+                      + 1235 2355 98
+                    </a>
                   </p>
                 </div>
               </div>
@@ -176,9 +177,7 @@ class Contact extends Component {
                       onChange={changeHandler("name")}
                       onBlur={validateHandler("name")}
                     />
-                    <span style={{ color: "red" }}>
-                      {errors.name ? errors.name : this.state.errors.name}{" "}
-                    </span>
+                    <span style={{ color: "red" }}>{errors.name} </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -189,9 +188,7 @@ class Contact extends Component {
                       onChange={changeHandler("email")}
                       onBlur={validateHandler("email")}
                     />
-                    <span style={{ color: "red" }}>
-                      {errors.email ? errors.email : this.state.errors.email}{" "}
-                    </span>
+                    <span style={{ color: "red" }}>{errors.email} </span>
                   </div>
                   <div className="form-group">
                     <input
@@ -202,11 +199,7 @@ class Contact extends Component {
                       onChange={changeHandler("subject")}
                       onBlur={validateHandler("subject")}
                     />
-                    <span style={{ color: "red" }}>
-                      {errors.subject
-                        ? errors.subject
-                        : this.state.errors.subject}{" "}
-                    </span>
+                    <span style={{ color: "red" }}>{errors.subject} </span>
                   </div>
                   <div className="form-group">
                     <textarea
@@ -218,17 +211,13 @@ class Contact extends Component {
                       onChange={changeHandler("message")}
                       onBlur={validateHandler("message")}
                     ></textarea>
-                    <span style={{ color: "red" }}>
-                      {errors.message
-                        ? errors.message
-                        : this.state.errors.message}{" "}
-                    </span>
+                    <span style={{ color: "red" }}>{errors.message} </span>
                   </div>
                   <div className="form-group">
                     <input
                       type="submit"
                       value="Send Message"
-                      className="btn btn-primary py-3 px-5"
+                      className="btn btn-success py-3 px-5"
                     />
                   </div>
                 </form>

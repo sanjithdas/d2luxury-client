@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-06 12:30:02
+ * @modify date 2020-11-09 22:59:44
  * @desc [Create New Room - Registered user only]
  */
 //react Stuff
@@ -13,7 +13,7 @@ import React, { Component } from "react";
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
 
 // Font/ styles
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import classnames from "classnames";
 
 // uuid - unique identifier create
@@ -110,12 +110,12 @@ class Create extends Component {
           <Col md={3} className="mx-auto"></Col>
           <Col md={6} className="mx-auto">
             <Card>
+              <Card.Header>
+                <span className="text-success">
+                  <h3>Create Room</h3>
+                </span>
+              </Card.Header>
               <Card.Body>
-                <h1 className="text-center pb-4, pt-3">
-                  <FontAwesomeIcon icon="lock" className="text-primary" />{" "}
-                  <span className="text-black">Create Room</span>
-                </h1>
-
                 <form
                   onSubmit={this.onSubmit}
                   enctype="multipart/form-data"
@@ -235,7 +235,11 @@ class Create extends Component {
                       </div>
                     )}
                   </Form.Group>
-                  <Button type="submit" variant="black" className="btn-block">
+                  <Button
+                    type="submit"
+                    variant="black"
+                    className="btn-block btn-success"
+                  >
                     Create Room
                   </Button>
                 </form>
@@ -243,7 +247,7 @@ class Create extends Component {
             </Card>
           </Col>
           <Col md={3} className="mx-auto">
-            <a className="btn btn-black text-white" href="/admin/room/show">
+            <a className="btn btn-success text-white" href="/admin/room/show">
               My Rooms
             </a>
           </Col>

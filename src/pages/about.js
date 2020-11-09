@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-06 11:23:06
+ * @modify date 2020-11-09 22:01:27
  * @desc [About page]
  */
 
@@ -16,7 +16,7 @@ const About = () => {
   return (
     <section className="bg-light mt-0 mb-0">
       <HeaderImage />
-      <section className="ftco-section mt-3 ftc-no-pb ftc-no-pt">
+      <section className="mt-4 ftc-no-pb ftc-no-pt">
         <div className="container">
           <div className="row">
             <div className="col-md-5 p-md-5 img img-2 img-3 d-flex justify-content-center align-items-center item-header-img1">

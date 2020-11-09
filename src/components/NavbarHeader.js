@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2020-11-06 13:13:38
+ * @modify date 2020-11-09 23:14:48
  * @desc [NavBar Component]
  */
 
@@ -17,17 +17,17 @@ import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
 
 const Styles = styled.div`
-  .navbar {
+  .Navbar {
     background-color: #fff;
-    position: sticky;
+    position: sticky !important;
     top: 0;
+  }
+  .Navbar fixed-top {
+    position: fixed !important;
   }
   .navbar-brand,
   .navbar-nav .nav-link {
     font-size: 1.3rem;
-    color: #000;
-    position: sticky;
-    top: 0;
 
     &:hover {
       color: red;
@@ -41,7 +41,12 @@ class NavbarHeader extends Component {
 
     return (
       <Styles>
-        <Navbar expand="lg" className="sticky-top">
+        <Navbar
+          style={{ backgroundColor: "#fff", position: "sticky", fixed: "top" }}
+          expand="lg"
+          fixed="top"
+          className="text-success"
+        >
           <Navbar.Brand href="/" className="htl-title-text">
             <h3>D2Luxury</h3>
           </Navbar.Brand>
@@ -50,29 +55,45 @@ class NavbarHeader extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Item>
-                <Nav.Link href="/">Home </Nav.Link>
+                <Nav.Link href="/" className="text-success mr-2">
+                  Home
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/rooms">Rooms</Nav.Link>
+                <Nav.Link href="/rooms" className="text-success  mr-2">
+                  Rooms
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/about">About</Nav.Link>
+                <Nav.Link href="/about" className="text-success  mr-2">
+                  About
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/contact">Contact</Nav.Link>
+                <Nav.Link href="/contact" className="text-success  mr-2">
+                  Contact
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 {authenticated ? (
-                  <Nav.Link href="/register">Create Room</Nav.Link>
+                  <Nav.Link href="/register" className="btn mr-2">
+                    Create Room
+                  </Nav.Link>
                 ) : (
-                  <Nav.Link href="/register">Register</Nav.Link>
+                  <Nav.Link href="/register" className="text-success  mr-2">
+                    Register
+                  </Nav.Link>
                 )}
               </Nav.Item>
               <Nav.Item>
                 {authenticated ? (
-                  <Nav.Link href="/logout">Logout</Nav.Link>
+                  <Nav.Link href="/logout" className="text-success  mr-2">
+                    Logout
+                  </Nav.Link>
                 ) : (
-                  <Nav.Link href="/login">Login</Nav.Link>
+                  <Nav.Link href="/login" className="text-success  mr-2">
+                    Login
+                  </Nav.Link>
                 )}
 
                 {/* <Nav.Link href="/login">{ authenticated  ? 'Logout' : 'Login'} </Nav.Link> */}

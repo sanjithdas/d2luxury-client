@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:48:22
- * @modify date 2020-11-06 14:36:45
+ * @modify date 2020-11-09 22:26:17
  * @desc [Room component - listing all the rooms ,
  *  passing props to individual component]
  */
@@ -41,9 +41,9 @@ class Rooms extends Component {
               <div className="room-wrap">
                 <div className="img d-flex align-items-center item-header-img1">
                   <div className="text text-center px-4 py-4">
-                    <h2>
+                    <h4>
                       Welcome to <a href="/" className="htl-title-text">D2luxury</a> Hotel
-                    </h2>
+                    </h4>
                     <p>
                       A small river named Duden flows by their place and
                       supplies it with the necessary regelialia.

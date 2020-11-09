@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-06 13:09:34
+ * @modify date 2020-11-09 22:56:33
  * @desc [Login Component]
  */
 //react
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 // styles
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // user action
 import { loginUser } from "../actions/userActions";
 //props
@@ -62,12 +63,13 @@ class Login extends Component {
         <Row className="mt-5 mb-5">
           <Col md={6} className="mx-auto">
             <Card>
-              <Card.Body>
-                <h1 className="text-center pb-4, pt-3">
-                  {/* <FontAwesomeIcon icon="lock" className="text-primary" />{" "} */}
-                  <span className="text-black">Login</span>
+              <Card.Header>
+                <h1 className="pb-4, pt-3">
+                  <FontAwesomeIcon icon="lock" className="text-success" />{" "}
+                  <span className="text-success">Login</span>
                 </h1>
-
+              </Card.Header>
+              <Card.Body>
                 <Form onSubmit={this.onHandleSubmit}>
                   <Form.Group>
                     <Form.Label>Email</Form.Label>
@@ -97,7 +99,11 @@ class Login extends Component {
                     <span style={{ color: "red" }}>{errors.general} </span>
                   )}
 
-                  <Button type="submit" variant="black" className="btn-block">
+                  <Button
+                    type="submit"
+                    variant="black"
+                    className="btn-block btn-success"
+                  >
                     Login
                     {loading && (
                       <div className="spinner-grow text-warning"></div>

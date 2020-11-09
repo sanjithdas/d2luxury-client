@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 16:36:03
- * @modify date 2020-11-06 15:13:24
+ * @modify date 2020-11-09 23:00:40
  * @desc [Update Room  - User can update their own room details]
  */
 // react stuff
@@ -11,7 +11,6 @@ import React, { Component } from "react";
 
 // bootstrap/ font
 import { Row, Col, Form, Card, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 
 // proptypes
@@ -181,12 +180,12 @@ class EditRoom extends Component {
           <Col md={3} className="mx-auto"></Col>
           <Col md={6} className="mx-auto">
             <Card>
+              <Card.Header>
+                <span className="text-success">
+                  <h3>Edit Room</h3>
+                </span>
+              </Card.Header>
               <Card.Body>
-                <h1 className="text-center pb-4 pt-3">
-                  <FontAwesomeIcon icon="lock" className="text-primary" />{" "}
-                  <span className="text-black">Edit Room</span>
-                </h1>
-
                 <Form onSubmit={this.onSubmit} enctype="multipart/form-data">
                   {/* <Form.Group controlId="roomno">
                     <Form.Label>Room number</Form.Label>
@@ -311,7 +310,11 @@ class EditRoom extends Component {
                     />
                   </Form.Group>
 
-                  <Button type="submit" variant="black" className="btn-block">
+                  <Button
+                    type="submit"
+                    variant="black"
+                    className="btn-block btn-success"
+                  >
                     Update
                   </Button>
                 </Form>

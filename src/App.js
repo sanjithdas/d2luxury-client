@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 12:31:08
- * @modify date 2020-11-06 22:54:54
+ * @modify date 2020-11-06 23:36:34
  * @desc [App Component - Main Component , which define all the routes]
  */
 /**
@@ -39,6 +39,7 @@ import {
   faQuestion,
   faSortDown,
   faExclamationTriangle,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { logoutUser, getUserData } from "./actions/userActions";
@@ -90,7 +91,8 @@ function App() {
     faPlus,
     faQuestion,
     faSortDown,
-    faExclamationTriangle
+    faExclamationTriangle,
+    faLock,
   );
   return (
     <Provider store={store}>
